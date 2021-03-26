@@ -6,8 +6,10 @@ const bcrypt = require('bcryptjs');
 const passport = require('passport');
 const flash=require('connect-flash');
 const session=require('express-session');
+var mentorRouter = require('./routes/mentor');
 var Strategy = require('passport-local').Strategy;
 const app=express();
+app.use(mentorRouter);
 app.use(express.static('public'));
 app.use(fileUpload());
 const conn=mysql.createConnection({
