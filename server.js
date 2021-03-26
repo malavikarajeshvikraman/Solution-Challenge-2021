@@ -1,10 +1,11 @@
 const express=require('express');
 const fileUpload = require('express-fileupload');
 const session=require('express-session');
+var mentorRouter = require('./routes/mentor');
 const app=express();
 app.use(express.static('public'));
 app.use(fileUpload());
-
+app.use(mentorRouter);
 app.set('view engine','ejs');
 app.use(express.urlencoded({extended:false}));
 
