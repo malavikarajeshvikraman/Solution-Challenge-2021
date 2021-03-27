@@ -40,14 +40,16 @@
           </div>
           <div class="form-group">
             <label for="role">Role</label>
-            <input
-              type="role"
-              id="role"
-              name="role"
-              class="form-control"
-              placeholder="Enter Role"
-              value="<%= typeof role != 'undefined' ? email : '' %>"
-            />
+            <select type="role"
+            id="role"
+            name="role"
+            class="form-control"
+            value="<%= typeof role != 'undefined' ? email : '' %>"
+            placeholder="Enter Role"
+            >
+              <option value="Mentor">Mentor</option>
+              <option value="Student">Student</option>
+            </select>
           </div>
           <div class="form-group">
             <label for="password">Password</label>
