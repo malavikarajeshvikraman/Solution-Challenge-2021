@@ -20,7 +20,7 @@ const conn=mysql.createConnection({
 })
 app.set('view engine','ejs');
 app.use(express.urlencoded({extended:false}));
-
+var route=require('./routes/after');
 app.get('/',(req,res) => {
     res.render('home');
 });
@@ -33,7 +33,7 @@ app.use(session({
       maxAge:60*60*1000, //set to 1 hour
       secure:false
       }}));
-
+app.use(route)
       app.use(flash());
       //passport middlewares
       app.use(passport.initialize());
