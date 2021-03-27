@@ -1,9 +1,9 @@
 const mysql =require('mysql');
 var conn = mysql.createConnection({
     connectionList:10,
-    password:'12345',
+    password:'sandra',
    user:'root',
-    database:'',
+    database:'challenge',
     host:'localhost',
     port:'3306',
     dateStrings:true,
