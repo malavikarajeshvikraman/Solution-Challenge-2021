@@ -24,6 +24,9 @@ var route=require('./routes/after');
 app.get('/',(req,res) => {
     res.render('home');
 });
+app.get('/user_dashboard',(req,res) => {
+    res.render('user_dashboard');
+});
 app.use(session({
     secret:'secret',
     resave: false,
