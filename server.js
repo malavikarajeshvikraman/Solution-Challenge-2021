@@ -74,7 +74,7 @@ app.use(route)
               if(result.length == 0){ 
                   bcrypt.genSalt(10, (err, salt) => { 
                   bcrypt.hash(password,salt, function(err, hash) {
-                      var sql = "INSERT INTO user (name,email,role,password) VALUES (?,?,?,?)";
+                      var sql = "INSERT INTO user (name,email,role,password,fill) VALUES (?,?,?,?,0)";
                       var values = [name,email,role,hash]
                       conn.query(sql,values, function (err, result, fields) {
                       if (err) throw err;
@@ -100,6 +100,7 @@ app.use(route)
           });
       
       app.get("/login",(req,res)=>{
+        
         res.render('login');
       });
       

@@ -4,3 +4,15 @@ email VARCHAR(50) NOT NULL,
 password VARCHAR(200) NOT NULL, 
 role VARCHAR(30),
 primary key(id))ENGINE=InnoDB;
+
+CREATE TABLE Mentors (
+	`mid` INT NOT NULL,
+	`firstname` VARCHAR(50) NOT NULL,
+	`lastname` VARCHAR(50) NOT NULL,
+	`Aoe` VARCHAR(150) NOT NULL,
+	`Occupation` VARCHAR(150) NOT NULL,
+	`Company` VARCHAR(150) NOT NULL,
+	`Linkedin_url` VARCHAR(200) NOT NULL,
+	`Profile_url` VARCHAR(100) NOT NULL,
+	PRIMARY KEY (`mid`)
+) ENGINE=InnoDB;
