@@ -5,6 +5,8 @@ password VARCHAR(200) NOT NULL,
 role VARCHAR(30),
 primary key(id))ENGINE=InnoDB;
 
+alter table user add column fill int;
+
 CREATE TABLE Mentors (
 	`mid` INT NOT NULL,
 	`firstname` VARCHAR(50) NOT NULL,

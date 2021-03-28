@@ -123,22 +123,36 @@ app.use(route)
               if (data[0].role == 'Mentor')
                 res.render('mdashboard');
               else
-                res.
+                res.render('');
             }
         })
     });
 
     app.post('/dashboard',(req,res) => {
+      Constants = {
+        fname :req.body.firstname,
+        lname:req.body.lastname,
+        aoe : req.body.aoe,
+        occ :req.body.occupation,
+        l_url:req.body.linkedin_url,
+        p_url:req.body.p_url
 
+      }
+      console.log(Constants);
       var sql='SELECT * FROM user WHERE email = ?';
       conn.query(sql, [req.session.email], function (err, data, fields) {
           if(err) throw err
+          var sql1 = 'Insert into mentors values (?,?,?,?,?,?,?,?);';
+          db.query(sql1,[ Constants.fname,Constants.lname,Constants.aoe,Constants.occupation,Constants.company,Constants.l_url,Constants.p_url], function (err, data) {
+            if (err) throw err;
+                 });
+       
+       res.render('mdashboard');
+      });
+    });
 
-          var sql1 = 'Insert into mentors'
           
-          
-      })
-  });
+        
       
       app.get('/logout',
         function(req, res){
