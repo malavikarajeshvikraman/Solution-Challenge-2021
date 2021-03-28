@@ -9,6 +9,7 @@ router.get('/articles',(req,res)=>{
     var sql='SELECT * from sarticle';
     db.query(sql,(err,data)=>{
         if(err) throw err;
+        console.log(data)
         res.render('scholarship',{articledata:data});
 
     });

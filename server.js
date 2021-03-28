@@ -54,6 +54,9 @@ app.use(route)
       app.get('/register',(req,res)=>{
         res.render('register');
       });
+      app.get('/restart',(req,res)=>{
+        res.render('restartcareer');
+      });
       app.get('/',(req,res)=>{
         res.render('home');
       });
