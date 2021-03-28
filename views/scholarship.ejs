@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    
+    <title>HerStory</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+    
+    <!-- Favicons -->
+    <link href="assets/img/favicon.png" rel="icon">
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,700|Open+Sans:300,300i,400,400i,700,700i" rel="stylesheet">
+    
+    <!-- Vendor CSS Files -->
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/ionicons/css/ionicons.min.css" rel="stylesheet">
+    <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+    <link href="assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="assets/vendor/venobox/venobox.css" rel="stylesheet">
+    
+    <!-- Template Main CSS File -->
+    <link href="assets/css/style.css" rel="stylesheet">
+    
+    <!-- =======================================================
+    * Template Name: Avilon - v2.2.1
+    * Template URL: https://bootstrapmade.com/avilon-bootstrap-landing-page-template/
+    * Author: BootstrapMade.com
+    * License: https://bootstrapmade.com/license/
+    ======================================================== -->
+<style>
+        a:link{
+            color:white;
+        }
+        .jumbotron{
+          background-color: white;
+          text-align: center;
+        }
+        .card{
+            border-color: white;
+        }
+    </style>
+</head>
+
+<body>
+ <!-- ======= Header ======= -->
+    <header id="header" style="background:linear-gradient(45deg,rgb(122,32,72), rgb(30,39,97))">
+        <div class="container">
+      
+          <div id="logo" class="pull-left">
+            <h1><a href="index.html" class="scrollto">HerStory</a></h1>
+            <!-- Uncomment below if you prefer to use an image logo -->
+            <!-- <a href="index.html"><img src="assets/img/logo.png" alt=""></a> -->
+          </div>
+      
+          <nav id="nav-menu-container">
+            <ul class="nav-menu">
+              <li class="menu-active"><a href="index.html">Home</a></li>
+              <li><a href="/after">About Us</a></li>
+              <li><a href="">Chat </a></li>
+              <li><a href="">Profile</a></li>
+              <li><a href="">Networking</a></li>
+              <li><a href="">Contact Us</a></li>
+              <li><a href="">Log out </a></li>
+             
+            </ul>
+          </nav><!-- #nav-menu-container -->
+        </div>
+      </header><!-- End Header -->
+  <br><br><br><br><br>
+  <div class="container">
+    <div class="jumbotron">
+    <h2>Scholarships for women</h2>
+  </div>
+  <div class="center"><img src="assets/img/graduation.jpg" width=1150px><br><br><br>
+      <p>Women tend to be largely under represented in STEM (science, technology, engineering, and math) fields.Because of the gender gap in STEM fields, there’s an effort to attract more women to STEM. Part of that effort is through college scholarships. If you’re planning to study STEM in college, check out the following links to learn about some of the best scholarships for women in STEM. </p>
+      <ul><h3>STEM</h3>
+          <li><a href="https://www.britishcouncil.org/study-work-abroad/in-uk/scholarship-women-stem">British Council scholarships</a></li>
+          <li><a href="https://www.iie.org/Programs/WeTech/STEM-Scholarships-for-Women/Qualcomm-Global-Scholars-Program/India">Qualcomm Global Scholars Program</a></li> 
+          <li><a href="https://www.iie.org/en/Programs/WeTech/STEM-Scholarships-for-Women/Juniper-Networks-Scholarship-and-Internship">Juniper Networks Scholarship</a></li>
+          <li><a href="https://www.womentechmakers.com/">Women Techmakers Scholarship</a></li>
+          <li><a href="https://www.gwis.org/page/fellowship_program">The Graduate Women In Science (GWIS) National Fellowships Program</a></li>
+      </ul>
+  </div>
+  <div class="header">
+    <h3>Other scholarships:</h3>
+  </div>
+  <div class="row">
+    <% articledata.forEach(articledata=>{ %>
+
+    <div class="leftcolumn">
+      <div class="card">
+        <h2><%=articledata.title %></h2>
+        <p><%=articledata.description %></p>
+        <p><%=articledata.link %></p>
+
+      </div>
+    </div>
+
+      <!--
+      <div class="card">
+        <h2>Adobe Research Women-in-Technology Scholarship</h2>
+        <p>This scholarship for girls offers a one-time scholarship amount of USD 10,000 to female students who are enrolled in an undergraduate or a master’s programmes in the field of Computer Science, Computer Engineering or a related technical subject. While applying for Adobe Research Women-in-Technology Scholarship, applicants must include their resume, academic records, 3 references, 4 essays and an optional 60-second video describing dream career with their scholarship application.
+        </p>
+      </div> -->
+    <% }) %>
+   <!-- <div class="aboutme">
+        <h2>About Me</h2>
+        <div class="fakeimg" style="height:100px;"><img src="assets/img/animationlady.jpg" height="200px" width="150px" alt=""></div>
+        <p>I am XYZ, of NY and I love blogging</p>
+        <h3>Popular Post</h3>
+        <div class="fakeimg">Image</div><br>
+        <div class="fakeimg">Image</div><br>
+        <div class="fakeimg">Image</div>
+
+        <h3>Follow Me</h3>
+        <p>Some text..</p>
+    </div>
+  </div> -->
+
+      <p>Want to add a new scholarship?<a href="newscholarship" style="color:blue">Add</a></p>
+    </div>
+  <br> <br><br><br>
+  <footer id="footer" style = "  position: fixed !important;
+  left: 0 !important;
+  bottom: 0 !important;
+  width: 100% !important;">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6 text-lg-left text-center">
+            <div class="copyright">
+              &copy; Copyright <strong>Avilon</strong>. All Rights Reserved
+            </div>
+            <div class="credits">
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <nav class="footer-links text-lg-right text-center pt-2 pt-lg-0">
+              <a href="#intro" class="scrollto">Home</a>
+              <a href="#about" class="scrollto">About</a>
+              <a href="#">Privacy Policy</a>
+              <a href="#">Terms of Use</a>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </footer>
+  
+</body>
+</html>
