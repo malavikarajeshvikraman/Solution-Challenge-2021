@@ -7,16 +7,18 @@ const passport = require('passport');
 const flash=require('connect-flash');
 const session=require('express-session');
 var mentorRouter = require('./routes/mentor');
+var userRouter = require('./routes/user');
 var Strategy = require('passport-local').Strategy;
 const app=express();
 app.use(mentorRouter);
+app.use(userRouter);
 app.use(express.static('public'));
 app.use(fileUpload());
 const conn=mysql.createConnection({
     host:'localhost',
     user: 'root',
-    password: 'sanjana123',
-    database: 'challenge'
+    password: '12345',
+    database: 'challange'
 })
 app.set('view engine','ejs');
 app.use(express.urlencoded({extended:false}));
@@ -24,9 +26,11 @@ var route=require('./routes/after');
 app.get('/',(req,res) => {
     res.render('home');
 });
-app.get('/user_dashboard',(req,res) => {
-    res.render('user_dashboard');
+
+app.get('/user_profile',(req,res) => {
+  res.render('user_profile');
 });
+
 app.use(session({
     secret:'secret',
     resave: false,
@@ -106,7 +110,9 @@ app.use(route)
         res.render('login');
       });
       
-      
+      app.get('/user_dashboard',(req,res) => {
+        res.render('user_dashboard');
+    });
       
       app.get('/logout',
         function(req, res){
@@ -116,11 +122,12 @@ app.use(route)
       
       app.post('/login', 
         passport.authenticate('local-login', { 
-          successRedirect: '/dashboard',
+          successRedirect: '/user_dashboard',
           failureRedirect: '/login',
           failureFlash: true }),
         function(req, res) {
           res.redirect('/');
+
         });
       //Authentication using passport
       passport.use(
