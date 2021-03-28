@@ -17,7 +17,7 @@ app.use(fileUpload());
 const conn=mysql.createConnection({
     host:'localhost',
     user: 'root',
-    password: 'sanjana123',
+    password: '12345',
     database: 'challenge'
 })
 app.set('view engine','ejs');
@@ -53,6 +53,9 @@ app.use(route)
       //REST APIs
       app.get('/register',(req,res)=>{
         res.render('register');
+      });
+      app.get('/restart',(req,res)=>{
+        res.render('restartcareer');
       });
       app.get('/',(req,res)=>{
         res.render('home');
@@ -131,16 +134,30 @@ app.use(route)
     });
 
     app.post('/dashboard',(req,res) => {
+      Constants = {
+        fname :req.body.firstname,
+        lname:req.body.lastname,
+        aoe : req.body.aoe,
+        occ :req.body.occupation,
+        l_url:req.body.linkedin_url,
+        p_url:req.body.p_url
 
+      }
+      console.log(Constants);
       var sql='SELECT * FROM user WHERE email = ?';
       conn.query(sql, [req.session.email], function (err, data, fields) {
           if(err) throw err
+          var sql1 = 'Insert into mentors values (?,?,?,?,?,?,?,?);';
+          db.query(sql1,[ Constants.fname,Constants.lname,Constants.aoe,Constants.occupation,Constants.company,Constants.l_url,Constants.p_url], function (err, data) {
+            if (err) throw err;
+                 });
+       
+       res.render('mdashboard');
+      });
+    });
 
-          var sql1 = 'Insert into mentors'
           
-          
-      })
-  });
+        
       
       app.get('/logout',
         function(req, res){
