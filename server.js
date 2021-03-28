@@ -15,11 +15,7 @@ app.use(fileUpload());
 const conn=mysql.createConnection({
     host:'localhost',
     user: 'root',
-<<<<<<< HEAD
     password: '12345',
-=======
-    password: 'sandra',
->>>>>>> 5968139f1262a454b34f8427b78d19073d78b18f
     database: 'challenge'
 })
 app.set('view engine','ejs');
@@ -111,7 +107,38 @@ app.use(route)
         res.render('login');
       });
       
-      
+     app.get('/dashboard',(req,res) => {
+        var sql='SELECT * FROM user WHERE email = (?)';
+        conn.query(sql, [req.session.email], function (err, data, fields) {
+            if(err) throw err
+            if(data[0].fill == 0)
+            { 
+              if (data[0].role == 'Mentor')
+                res.render('moredetails');
+              else
+                res.render('moredetails');
+            }
+            else
+            {
+              if (data[0].role == 'Mentor')
+                res.render('mdashboard');
+              else
+                res.
+            }
+        })
+    });
+
+    app.post('/dashboard',(req,res) => {
+
+      var sql='SELECT * FROM user WHERE email = ?';
+      conn.query(sql, [req.session.email], function (err, data, fields) {
+          if(err) throw err
+
+          var sql1 = 'Insert into mentors'
+          
+          
+      })
+  });
       
       app.get('/logout',
         function(req, res){
@@ -138,6 +165,7 @@ app.use(route)
           },
           function(req, email, password, done) {
             console.log(email);
+            req.session.email1=email;
             console.log(password);
             conn.query('SELECT * FROM user WHERE email ="' + email +'"',function(err, rows) {
               console.log(rows);  

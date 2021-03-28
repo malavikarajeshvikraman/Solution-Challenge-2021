@@ -18,9 +18,12 @@
     font-family: Lato,"helvetica neue",sans-serif;
     font-weight: 400;
     font-variant: small-caps;
+    padding-left: 37%;
+    margin-bottom: 5%;
 }
 .form-group{
-    margin:10%;
+  padding-left: 25%;
+  margin-bottom: 2.5%;
 }
   </style>
 </head>
@@ -34,118 +37,99 @@
 
   <main id="main" >
     <div class="container">
-        <form class="form-horizontal" style="background: #d7d7e2;">
+        <form class="form-horizontal" style="background: #d7d7e2;" action="/register" method="POST">
     <fieldset style= "margin: 10rem;">
     
     <!-- Form Name -->
-    <legend class="col-form-title">Applicant Details</legend>
+    <legend class="col-form-title">Mentor Details</legend>
     
     <!-- Text input-->
     <div class="form-group row">
-      <label class="col-md-4 col-form-label" for="surname">Surname/Family Name</label>  
+      <label class="col-md-4 col-form-label" >First Name</label>  
       <div class="col-md-4">
-      <input id="surname" name="surname" type="text" placeholder="Surname" class="form-control input-md" required="">
+      <input id="firstname" name="firstname" type="text" placeholder="First name " class="form-control input-md" required="">
         
       </div>
     </div>
     
     <!-- Text input-->
     <div class="form-group row">
-      <label class="col-md-4 col-form-label" for="preferred_name">Preferred name</label>  
+      <label class="col-md-4 col-form-label" for="preferred_name">Lastname</label>  
       <div class="col-md-4">
-      <input id="preferred_name" name="preferred_name" type="text" placeholder="Preferred name" class="form-control input-md">
+      <input id="lastname" name="lastname" type="text" placeholder="Last name" class="form-control input-md">
         
       </div>
     </div>
     
-    <!-- Text input-->
-    <div class="form-group row">
-      <label class="col-md-4 col-form-label" for="given_names">Given names in full</label>  
-      <div class="col-md-4">
-      <input id="given_names" name="given_names" type="text" placeholder="Given names" class="form-control input-md" required="">
-        
-      </div>
-    </div>
+
     
     <!-- Text input-->
     <div class="form-group row">
-      <label class="col-md-4 col-form-label" for="given2">Middle names</label>  
+      <label class="col-md-4 col-form-label" for="given2">Area of Expertise </label>  
       <div class="col-md-4">
-      <input id="given2" name="given2" type="text" placeholder="Middle names" class="form-control input-md">
+      <input id="aoe" name="aoe" type="text" placeholder="Area of Expertise" class="form-control input-md">
         
       </div>
     </div>
+
+
     
     <!-- Appended checkbox -->
     <div class="form-group row">
-      <label class="col-md-4 col-form-label" for="date_of_birth">Date of Birth</label>
+      <label class="col-md-4 col-form-label" for="date_of_birth">Occupation</label>
       <div class="col-md-4">
         <div class="input-group">
-          <input id="date_of_birth" name="date_of_birth" class="form-control" type="text" placeholder="dd/mm/yyyy">
-                <span class="input-group-addon">     
-              <input type="checkbox">     
+          <input id="occupation" name="occupation" class="form-control" type="text" placeholder="Occupation">
+    
           </span>
         </div>
         
       </div>
     </div>
-    
-    <!-- Multiple Radios -->
-    <div class="form-group row">
-      <label class="col-md-4 col-form-label" for="gender">Gender</label>
-      <div class="col-md-4">
-      <div class="radio">
-        <label for="gender-0">
-          <input type="radio" name="gender" id="gender-0" value="M" checked="checked">
-          Male
-        </label>
-        </div>
-      <div class="radio">
-        <label for="gender-1">
-          <input type="radio" name="gender" id="gender-1" value="F">
-          Female
-        </label>
-        </div>
-      <div class="radio">
-        <label for="gender-2">
-          <input type="radio" name="gender" id="gender-2" value="U">
-          Unspecified
-        </label>
-        </div>
-      </div>
-    </div>
-    
+ 
     <!-- Select Basic -->
     <div class="form-group row">
-      <label class="col-md-4 col-form-label" for="religion">Religion</label>
+      <label class="col-md-4 col-form-label" for="date_of_birth">Company</label>
       <div class="col-md-4">
-        <select id="religion" name="religion" class="form-control">
-          <option value="1">None</option>
-        </select>
+        <div class="input-group">
+          <input id="company" name="company" class="form-control" type="text" placeholder="Eg : Apple ">
+              
+          </span>
+        </div>
+        
       </div>
-    </div>
+      </div>
     
-    <!-- Select Basic -->
+       <!-- Text input-->
     <div class="form-group row">
-      <label class="col-md-4 col-form-label" for="tsi_status">Torres Straight Islander Status</label>
-      <div class="col-md-4">
-        <select id="tsi_status" name="tsi_status" class="form-control">
-          <option value="N">No</option>
-          <option value="Y">Yes</option>
-        </select>
-      </div>
+      <label class="col-md-4 col-form-label" for="given2">Linkedin Profile link : </label>  
+      <div class="col-md-6">
+      <input id="linkedin_url" name="linkedin_url" type="text" placeholder="Area of Expertise" class="form-control input-md">
+      
     </div>
-    
-    <!-- Select Basic -->
+    </div>
+
     <div class="form-group row">
-      <label class="col-md-4 col-form-label" for="indigenous_status">Indigenous Status</label>
-      <div class="col-md-4">
-        <select id="indigenous_status" name="indigenous_status" class="form-control">
-          <option value="Y">No</option>
-          <option value="N">Yes</option>
-        </select>
-      </div>
+      <label class="col-md-4 col-form-label" for="given2">Portfolio link : </label>  
+      <div class="col-md-6">
+      <input id="p_url" name="p_url" type="text" placeholder="Area of Expertise" class="form-control input-md">
+      
     </div>
+    </div>
+
+      <div class="form-group row">
+        <label class="col-md-4 col-form-label" for="date_of_birth">Company</label>
+        <div class="col-md-4">
+          <div class="input-group">
+            <input id="company" name="company" class="form-control" type="text" placeholder="Eg : Apple ">
+                
+            </span>
+          </div>
+          
+        </div>
+        </div>
+        
+ 
     
     <!-- Button -->
     <div class="form-group row">
