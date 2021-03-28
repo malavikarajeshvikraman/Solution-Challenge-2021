@@ -7,9 +7,11 @@ const passport = require('passport');
 const flash=require('connect-flash');
 const session=require('express-session');
 var mentorRouter = require('./routes/mentor');
+const scholarshipRouter=require('./routes/scholarshiparticles');
 var Strategy = require('passport-local').Strategy;
 const app=express();
 app.use(mentorRouter);
+app.use(scholarshipRouter);
 app.use(express.static('public'));
 app.use(fileUpload());
 const conn=mysql.createConnection({
@@ -123,7 +125,7 @@ app.use(route)
               if (data[0].role == 'Mentor')
                 res.render('mdashboard');
               else
-                res.render('');
+                res.render('user_dashboard')
             }
         })
     });
@@ -221,9 +223,22 @@ app.use(route)
           done(err, rows[0]);
         });
       });
+      app.post('/new',(req,res)=>{
+        console.log(req.body);
+        var post=req.body;
+        var title=post.title;
+        var description=post.description;
+        var link=post.link;
+        var sql="INSERT INTO sarticle(title,description,link) values (?,?,?)";
+        var newarticle=[title,description,link];
+        conn.query(sql,newarticle,(err,data)=>{
+          if(err) throw err;  
+          res.redirect('/articles');
+        });
+    });    
       
 
 
 
-const PORT=process.env.port || 8000;
+const PORT=process.env.port || 5000;
 app.listen(PORT);
