@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('./partials/head.ejs') %>
+    <style>
+        a:link{
+            color:white;
+        }
+    </style>
+</head>
+
+<body>
+    <%- include('partials/mheader.ejs') %>
+
+  <br><br><br><br><br>
+  <div class="container">
+  <div class="header">
+    <h2>Scholarships for women</h2>
+  </div>
+  <div class="center"><img src="assets/img/graduation.jpg" width=1150px><br><br><br>
+      <p>Women tend to be largely under represented in STEM (science, technology, engineering, and math) fields.Because of the gender gap in STEM fields, there’s an effort to attract more women to STEM. Part of that effort is through college scholarships. If you’re planning to study STEM in college, check out the following links to learn about some of the best scholarships for women in STEM. </p>
+      <ul><h3>STEM</h3>
+          <li><a href="https://www.britishcouncil.org/study-work-abroad/in-uk/scholarship-women-stem">British Council scholarships</a></li>
+          <li><a href="https://www.iie.org/Programs/WeTech/STEM-Scholarships-for-Women/Qualcomm-Global-Scholars-Program/India">Qualcomm Global Scholars Program</a></li> 
+          <li><a href="https://www.iie.org/en/Programs/WeTech/STEM-Scholarships-for-Women/Juniper-Networks-Scholarship-and-Internship">Juniper Networks Scholarship</a></li>
+          <li><a href="https://www.womentechmakers.com/">Women Techmakers Scholarship</a></li>
+          <li><a href="https://www.gwis.org/page/fellowship_program">The Graduate Women In Science (GWIS) National Fellowships Program</a></li>
+      </ul>
+  </div>
+  <div class="header">
+    <h3>Other scholarships:</h3>
+  </div>
+  <div class="row">
+    <% articledata.forEach(articledata=>{ %>
+
+    <div class="leftcolumn">
+      <div class="card">
+        <h2><%=articledata.title %></h2>
+        <p><%=articledata.description %></p>
+        <p><%=articledata.link %></p>
+
+      </div>
+    </div>
+
+      <!--
+      <div class="card">
+        <h2>Adobe Research Women-in-Technology Scholarship</h2>
+        <p>This scholarship for girls offers a one-time scholarship amount of USD 10,000 to female students who are enrolled in an undergraduate or a master’s programmes in the field of Computer Science, Computer Engineering or a related technical subject. While applying for Adobe Research Women-in-Technology Scholarship, applicants must include their resume, academic records, 3 references, 4 essays and an optional 60-second video describing dream career with their scholarship application.
+        </p>
+      </div> -->
+    <% }) %>
+   <!-- <div class="aboutme">
+        <h2>About Me</h2>
+        <div class="fakeimg" style="height:100px;"><img src="assets/img/animationlady.jpg" height="200px" width="150px" alt=""></div>
+        <p>I am XYZ, of NY and I love blogging</p>
+        <h3>Popular Post</h3>
+        <div class="fakeimg">Image</div><br>
+        <div class="fakeimg">Image</div><br>
+        <div class="fakeimg">Image</div>
+
+        <h3>Follow Me</h3>
+        <p>Some text..</p>
+    </div>
+  </div> -->
+
+      <button type="button" class="btn btn-info"><a href="/articles/new">New article</a></button>
+    </div>
+  <br> <br><br><br>
+  <%- include('partials/mfooter.ejs') %>
+
+</body>
+</html>

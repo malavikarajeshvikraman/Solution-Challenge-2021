@@ -7,9 +7,11 @@ const passport = require('passport');
 const flash=require('connect-flash');
 const session=require('express-session');
 var mentorRouter = require('./routes/mentor');
+const scholarshipRouter=require('./routes/scholarshiparticles');
 var Strategy = require('passport-local').Strategy;
 const app=express();
 app.use(mentorRouter);
+app.use(scholarshipRouter);
 app.use(express.static('public'));
 app.use(fileUpload());
 const conn=mysql.createConnection({
@@ -19,7 +21,7 @@ const conn=mysql.createConnection({
     database: 'challenge'
 })
 app.set('view engine','ejs');
-app.use(express.urlencoded({extended:false}));
+app.use(express.urlencoded({extended:true}));
 
 app.get('/',(req,res) => {
     res.render('home');
@@ -171,7 +173,19 @@ app.use(session({
           done(err, rows[0]);
         });
       });
-      
+      app.post('/articles/new',(req,res)=>{
+        console.log(req.body);
+        var post=req.body;
+        var title=post.title;
+        var description=post.description;
+        var link=post.link;
+        var sql="INSERT INTO sarticle(title,description,link) values (?,?,?)";
+        var newarticle=[title,description,link];
+        conn.query(sql,newarticle,(err,data)=>{
+          if(err) throw err;  
+          res.redirect('/articles');
+        });
+    });    
 
 
 
