@@ -15,7 +15,7 @@ app.use(fileUpload());
 const conn=mysql.createConnection({
     host:'localhost',
     user: 'root',
-    password: 'sandra',
+    password: '12345',
     database: 'challenge'
 })
 app.set('view engine','ejs');
@@ -77,7 +77,7 @@ app.use(route)
               if(result.length == 0){ 
                   bcrypt.genSalt(10, (err, salt) => { 
                   bcrypt.hash(password,salt, function(err, hash) {
-                      var sql = "INSERT INTO user (name,email,role,password) VALUES (?,?,?,?)";
+                      var sql = "INSERT INTO user (name,email,role,password,fill) VALUES (?,?,?,?,0)";
                       var values = [name,email,role,hash]
                       conn.query(sql,values, function (err, result, fields) {
                       if (err) throw err;
@@ -103,10 +103,42 @@ app.use(route)
           });
       
       app.get("/login",(req,res)=>{
+        
         res.render('login');
       });
       
-      
+     app.get('/dashboard',(req,res) => {
+        var sql='SELECT * FROM user WHERE email = (?)';
+        conn.query(sql, [req.session.email], function (err, data, fields) {
+            if(err) throw err
+            if(data[0].fill == 0)
+            { 
+              if (data[0].role == 'Mentor')
+                res.render('moredetails');
+              else
+                res.render('moredetails');
+            }
+            else
+            {
+              if (data[0].role == 'Mentor')
+                res.render('mdashboard');
+              else
+                res.
+            }
+        })
+    });
+
+    app.post('/dashboard',(req,res) => {
+
+      var sql='SELECT * FROM user WHERE email = ?';
+      conn.query(sql, [req.session.email], function (err, data, fields) {
+          if(err) throw err
+
+          var sql1 = 'Insert into mentors'
+          
+          
+      })
+  });
       
       app.get('/logout',
         function(req, res){
@@ -133,6 +165,7 @@ app.use(route)
           },
           function(req, email, password, done) {
             console.log(email);
+            req.session.email1=email;
             console.log(password);
             conn.query('SELECT * FROM user WHERE email ="' + email +'"',function(err, rows) {
               console.log(rows);  

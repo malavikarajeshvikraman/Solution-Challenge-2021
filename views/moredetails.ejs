@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('partials/head.ejs') %>
+
+  <style>
+    body{
+        background: #e8e8f5;
+    }
+.col-form-label {
+    color: #2A4A8D;
+    font-family: Lato,"helvetica neue",sans-serif;
+}
+
+.col-form-title {
+    color: #2A4A8D;
+    font-family: Lato,"helvetica neue",sans-serif;
+    font-weight: 400;
+    font-variant: small-caps;
+    padding-left: 37%;
+    margin-bottom: 5%;
+}
+.form-group{
+  padding-left: 25%;
+  margin-bottom: 2.5%;
+}
+  </style>
+</head>
+
+<body>
+
+  <%- include('partials/mheader.ejs') %>
+ 
+
+  
+
+  <main id="main" >
+    <div class="container">
+        <form class="form-horizontal" style="background: #d7d7e2;" action="/register" method="POST">
+    <fieldset style= "margin: 10rem;">
+    
+    <!-- Form Name -->
+    <legend class="col-form-title">Mentor Details</legend>
+    
+    <!-- Text input-->
+    <div class="form-group row">
+      <label class="col-md-4 col-form-label" >First Name</label>  
+      <div class="col-md-4">
+      <input id="firstname" name="firstname" type="text" placeholder="First name " class="form-control input-md" required="">
+        
+      </div>
+    </div>
+    
+    <!-- Text input-->
+    <div class="form-group row">
+      <label class="col-md-4 col-form-label" for="preferred_name">Lastname</label>  
+      <div class="col-md-4">
+      <input id="lastname" name="lastname" type="text" placeholder="Last name" class="form-control input-md">
+        
+      </div>
+    </div>
+    
+
+    
+    <!-- Text input-->
+    <div class="form-group row">
+      <label class="col-md-4 col-form-label" for="given2">Area of Expertise </label>  
+      <div class="col-md-4">
+      <input id="aoe" name="aoe" type="text" placeholder="Area of Expertise" class="form-control input-md">
+        
+      </div>
+    </div>
+
+
+    
+    <!-- Appended checkbox -->
+    <div class="form-group row">
+      <label class="col-md-4 col-form-label" for="date_of_birth">Occupation</label>
+      <div class="col-md-4">
+        <div class="input-group">
+          <input id="occupation" name="occupation" class="form-control" type="text" placeholder="Occupation">
+    
+          </span>
+        </div>
+        
+      </div>
+    </div>
+ 
+    <!-- Select Basic -->
+    <div class="form-group row">
+      <label class="col-md-4 col-form-label" for="date_of_birth">Company</label>
+      <div class="col-md-4">
+        <div class="input-group">
+          <input id="company" name="company" class="form-control" type="text" placeholder="Eg : Apple ">
+              
+          </span>
+        </div>
+        
+      </div>
+      </div>
+    
+       <!-- Text input-->
+    <div class="form-group row">
+      <label class="col-md-4 col-form-label" for="given2">Linkedin Profile link : </label>  
+      <div class="col-md-6">
+      <input id="linkedin_url" name="linkedin_url" type="text" placeholder="Area of Expertise" class="form-control input-md">
+      
+    </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-md-4 col-form-label" for="given2">Portfolio link : </label>  
+      <div class="col-md-6">
+      <input id="p_url" name="p_url" type="text" placeholder="Area of Expertise" class="form-control input-md">
+      
+    </div>
+    </div>
+
+      <div class="form-group row">
+        <label class="col-md-4 col-form-label" for="date_of_birth">Company</label>
+        <div class="col-md-4">
+          <div class="input-group">
+            <input id="company" name="company" class="form-control" type="text" placeholder="Eg : Apple ">
+                
+            </span>
+          </div>
+          
+        </div>
+        </div>
+        
+ 
+    
+    <!-- Button -->
+    <div class="form-group row">
+      <label class="col-md-4 col-form-label" for="next"></label>
+      <div class="col-md-4">
+        <button id="next" name="next" class="btn btn-primary">Save & Continue</button>
+      </div>
+    </div>
+    
+    </fieldset>
+    </form>
+    
+    </div>
+
+  </main><!-- End #main -->
+
+  <%- include('partials/mfooter.ejs') %>
+  
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/jquery/jquery.min.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/wow/wow.min.js"></script>
+  <script src="assets/vendor/venobox/venobox.min.js"></script>
+  <script src="assets/vendor/superfish/superfish.min.js"></script>
+  <script src="assets/vendor/hoverIntent/hoverIntent.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
