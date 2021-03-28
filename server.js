@@ -15,7 +15,11 @@ app.use(fileUpload());
 const conn=mysql.createConnection({
     host:'localhost',
     user: 'root',
+<<<<<<< HEAD
     password: '12345',
+=======
+    password: 'sandra',
+>>>>>>> 5968139f1262a454b34f8427b78d19073d78b18f
     database: 'challenge'
 })
 app.set('view engine','ejs');
@@ -23,6 +27,9 @@ app.use(express.urlencoded({extended:false}));
 var route=require('./routes/after');
 app.get('/',(req,res) => {
     res.render('home');
+});
+app.get('/user_dashboard',(req,res) => {
+    res.render('user_dashboard');
 });
 app.use(session({
     secret:'secret',

@@ -6,104 +6,22 @@
 
   <style>
     body{
-        background: #eff5f5;
-    }  
-    .emp-profile {
-        padding: 3%;
-        margin-top: 3%;
-        margin-bottom: 3%;
-        border-radius: 1rem;
-        background: #fff;
+        background: #e8e8f5;
     }
-    .profile-img{
-        text-align: center;
-    }
-    .profile-img img{
-        width: 70%;
-        height: 100%;
-    }
-    .profile-img .file {
-        position: relative;
-        overflow: hidden;
-        margin-top: -20%;
-        width: 70%;
-        border: none;
-        border-radius: 0;
-        font-size: 15px;
-        background: #212529b8;
-    }
-    .profile-img .file input {
-        position: absolute;
-        opacity: 0;
-        right: 0;
-        top: 0;
-    }
-    .profile-head h5{
-        color: #333;
-    }
-    .profile-head h6{
-        color: #0062cc;
-    }
-    .profile-edit-btn{
-        border: none;
-        border-radius: 1.5rem;
-        width: 70%;
-        padding: 2%;
-        font-weight: 600;
-        color: #6c757d;
-        cursor: pointer;
-    }
-    .proile-rating{
-        font-size: 12px;
-        color: #818182;
-        margin-top: 5%;
-    }
-    .proile-rating span{
-        color: #495057;
-        font-size: 15px;
-        font-weight: 600;
-    }
-    .profile-head .nav-tabs{
-        margin-bottom:5%;
-    }
-    .profile-head .nav-tabs .nav-link{
-        font-weight:600;
-        border: none;
-    }
-    .profile-head .nav-tabs .nav-link.active{
-        border: none;
-        border-bottom:2px solid #0062cc;
-    }
+.col-form-label {
+    color: #2A4A8D;
+    font-family: Lato,"helvetica neue",sans-serif;
+}
 
-        .profile-work {
-            padding: 15%;
-            margin-top: -30%;
-            padding-right: 100;
-        }
-   
-    .profile-work p {
-            font-size: 12px;
-            color: #2525e4;
-            font-weight: 600;
-            margin-top: 10%;
-            margin-bottom: 2%;
-    }
-    .profile-work a{
-        text-decoration: none;
-        color: #495057;
-        font-weight: 600;
-        font-size: 14px;
-    }
-    .profile-work ul{
-        list-style: none;
-    }
-    .profile-tab label{
-        font-weight: 600;
-    }
-    .profile-tab p{
-        font-weight: 600;
-        color: #0062cc;
-    }
+.col-form-title {
+    color: #2A4A8D;
+    font-family: Lato,"helvetica neue",sans-serif;
+    font-weight: 400;
+    font-variant: small-caps;
+}
+.form-group{
+    margin:10%;
+}
   </style>
 </head>
 
@@ -114,7 +32,133 @@
 
   
 
-  <main id="main" style="background: #eff5f5;">
+  <main id="main" >
+    <div class="container">
+        <form class="form-horizontal" style="background: #d7d7e2;">
+    <fieldset style= "margin: 10rem;">
+    
+    <!-- Form Name -->
+    <legend class="col-form-title">Applicant Details</legend>
+    
+    <!-- Text input-->
+    <div class="form-group row">
+      <label class="col-md-4 col-form-label" for="surname">Surname/Family Name</label>  
+      <div class="col-md-4">
+      <input id="surname" name="surname" type="text" placeholder="Surname" class="form-control input-md" required="">
+        
+      </div>
+    </div>
+    
+    <!-- Text input-->
+    <div class="form-group row">
+      <label class="col-md-4 col-form-label" for="preferred_name">Preferred name</label>  
+      <div class="col-md-4">
+      <input id="preferred_name" name="preferred_name" type="text" placeholder="Preferred name" class="form-control input-md">
+        
+      </div>
+    </div>
+    
+    <!-- Text input-->
+    <div class="form-group row">
+      <label class="col-md-4 col-form-label" for="given_names">Given names in full</label>  
+      <div class="col-md-4">
+      <input id="given_names" name="given_names" type="text" placeholder="Given names" class="form-control input-md" required="">
+        
+      </div>
+    </div>
+    
+    <!-- Text input-->
+    <div class="form-group row">
+      <label class="col-md-4 col-form-label" for="given2">Middle names</label>  
+      <div class="col-md-4">
+      <input id="given2" name="given2" type="text" placeholder="Middle names" class="form-control input-md">
+        
+      </div>
+    </div>
+    
+    <!-- Appended checkbox -->
+    <div class="form-group row">
+      <label class="col-md-4 col-form-label" for="date_of_birth">Date of Birth</label>
+      <div class="col-md-4">
+        <div class="input-group">
+          <input id="date_of_birth" name="date_of_birth" class="form-control" type="text" placeholder="dd/mm/yyyy">
+                <span class="input-group-addon">     
+              <input type="checkbox">     
+          </span>
+        </div>
+        
+      </div>
+    </div>
+    
+    <!-- Multiple Radios -->
+    <div class="form-group row">
+      <label class="col-md-4 col-form-label" for="gender">Gender</label>
+      <div class="col-md-4">
+      <div class="radio">
+        <label for="gender-0">
+          <input type="radio" name="gender" id="gender-0" value="M" checked="checked">
+          Male
+        </label>
+        </div>
+      <div class="radio">
+        <label for="gender-1">
+          <input type="radio" name="gender" id="gender-1" value="F">
+          Female
+        </label>
+        </div>
+      <div class="radio">
+        <label for="gender-2">
+          <input type="radio" name="gender" id="gender-2" value="U">
+          Unspecified
+        </label>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Select Basic -->
+    <div class="form-group row">
+      <label class="col-md-4 col-form-label" for="religion">Religion</label>
+      <div class="col-md-4">
+        <select id="religion" name="religion" class="form-control">
+          <option value="1">None</option>
+        </select>
+      </div>
+    </div>
+    
+    <!-- Select Basic -->
+    <div class="form-group row">
+      <label class="col-md-4 col-form-label" for="tsi_status">Torres Straight Islander Status</label>
+      <div class="col-md-4">
+        <select id="tsi_status" name="tsi_status" class="form-control">
+          <option value="N">No</option>
+          <option value="Y">Yes</option>
+        </select>
+      </div>
+    </div>
+    
+    <!-- Select Basic -->
+    <div class="form-group row">
+      <label class="col-md-4 col-form-label" for="indigenous_status">Indigenous Status</label>
+      <div class="col-md-4">
+        <select id="indigenous_status" name="indigenous_status" class="form-control">
+          <option value="Y">No</option>
+          <option value="N">Yes</option>
+        </select>
+      </div>
+    </div>
+    
+    <!-- Button -->
+    <div class="form-group row">
+      <label class="col-md-4 col-form-label" for="next"></label>
+      <div class="col-md-4">
+        <button id="next" name="next" class="btn btn-primary">Save & Continue</button>
+      </div>
+    </div>
+    
+    </fieldset>
+    </form>
+    
+    </div>
 
   </main><!-- End #main -->
 
