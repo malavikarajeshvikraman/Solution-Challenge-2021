@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('partials/head.ejs') %>
+
+  <style>
+   body{
+        background: #eff5f5;
+    } 
+    /* 
+    .emp-profile {
+        padding: 3%;
+        margin-top: 3%;
+        margin-bottom: 3%;
+        border-radius: 1rem;
+        background: #fff;
+    }
+    .profile-img{
+        text-align: center;
+    }
+    .profile-img img{
+        width: 70%;
+        height: 100%;
+    }
+    .profile-img .file {
+        position: relative;
+        overflow: hidden;
+        margin-top: -20%;
+        width: 70%;
+        border: none;
+        border-radius: 0;
+        font-size: 15px;
+        background: #212529b8;
+    }
+    .profile-img .file input {
+        position: absolute;
+        opacity: 0;
+        right: 0;
+        top: 0;
+    }
+    .profile-head h5{
+        color: #333;
+    }
+    .profile-head h6{
+        color: #0062cc;
+    }
+    .profile-edit-btn{
+        border: none;
+        border-radius: 1.5rem;
+        width: 70%;
+        padding: 2%;
+        font-weight: 600;
+        color: #6c757d;
+        cursor: pointer;
+    }
+    .proile-rating{
+        font-size: 12px;
+        color: #818182;
+        margin-top: 5%;
+    }
+    .proile-rating span{
+        color: #495057;
+        font-size: 15px;
+        font-weight: 600;
+    }
+    .profile-head .nav-tabs{
+        margin-bottom:5%;
+    }
+    .profile-head .nav-tabs .nav-link{
+        font-weight:600;
+        border: none;
+    }
+    .profile-head .nav-tabs .nav-link.active{
+        border: none;
+        border-bottom:2px solid #0062cc;
+    }
+
+        .profile-work {
+            padding: 15%;
+            margin-top: -30%;
+            padding-right: 100;
+        }
+   
+    .profile-work p {
+            font-size: 12px;
+            color: #2525e4;
+            font-weight: 600;
+            margin-top: 10%;
+            margin-bottom: 2%;
+    }
+    .profile-work a{
+        text-decoration: none;
+        color: #495057;
+        font-weight: 600;
+        font-size: 14px;
+    }
+    .profile-work ul{
+        list-style: none;
+    }
+    .profile-tab label{
+        font-weight: 600;
+    }
+    .profile-tab p{
+        font-weight: 600;
+        color: #0062cc;
+    }
+    */
+/* Feild Section*/
+
+.specials {
+  overflow: hidden;
+}
+
+.specials .nav-tabs {
+  border: 0;
+}
+
+.specials .nav-link {
+  border: 0;
+  padding: 12px 15px 12px 0;
+  transition: 0.3s;
+  color: #433f39;
+  border-radius: 0;
+  border-right: 2px solid #e8e7e4;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.specials .nav-link:hover {
+  color: rgb(146,216,42);
+}
+
+.specials .nav-link.active {
+  color: rgb(146,216,42);
+  border-color: rgb(146,216,42);
+}
+
+.specials .tab-pane.active {
+  -webkit-animation: fadeIn 0.5s ease-out;
+  animation: fadeIn 0.5s ease-out;
+}
+
+.specials .details h3 {
+  font-size: 26px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #433f39;
+}
+
+.specials .details p {
+  color: #777777;
+}
+
+.specials .details p:last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 992px) {
+  .specials .nav-link {
+    border: 0;
+    padding: 15px;
+  }
+  .specials .nav-link.active {
+    color: #fff;
+    background: rgb(146,216,42);
+  }
+}
+/* Feild Section Ends*/
+  </style>
+</head>
+
+<body>
+
+  <%- include('partials/mheader.ejs') %>
+ 
+
+  
+
+  <main id="main" style="background: #eff5f5;">
+    <section id="specials" class="specials">
+        <br><br><br><br><br><br>
+        <div class="container">
+  
+          <div class="section-title">
+            <h2>Types of colleges <span>....</span></h2>
+            <p>Here are some of kinds of colleges you might be looking for!!</p>
+          </div>
+  
+          <div class="row">
+            <div class="col-lg-3">
+              <ul class="nav nav-tabs flex-column">
+                <li class="nav-item">
+                  <a class="nav-link active show" data-toggle="tab" href="#tab-1">National Level Govt. Colleges</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" data-toggle="tab" href="#tab-2">Famous Private Colleges</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" data-toggle="tab" href="#tab-3">State Govt.College</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" data-toggle="tab" href="#tab-4">State Private College</a>
+                </li>
+                
+              </ul>
+            </div>
+            <div class="col-lg-9 mt-4 mt-lg-0">
+              <div class="tab-content">
+                <div class="tab-pane active show" id="tab-1">
+                  <div class="row">
+                    <div class="col-lg-8 details order-2 order-lg-1">
+                      <h3>National Level Govt. Colleges</h3>
+                      <p class="font-italic">
+                        <ul>
+                          <li><a href="/iit">IIT </a></li>
+                          <li><a href="/nit">NIT </a></li>
+                          <li><a href="/iiit">IIIT </a></li>
+                          <li><a href=".html">OTHER </a></li>
+                        </ul>
+                      </p>
+                    </div>
+                    <div class="col-lg-4 text-center order-1 order-lg-2">
+                      <img src="images/chickentikka.jpg" alt="" class="img-fluid">
+                    </div>
+                  </div>
+                </div>
+                <div class="tab-pane" id="tab-2">
+                  <div class="row">
+                    <div class="col-lg-8 details order-2 order-lg-1">
+                      <h3>Famous Private Colleges</h3>
+                      <p>This famous chinese dish is famous around the world as it is simple yet filling. Initially started out as just a steamed momo, it now is made in many varieties. </p>
+                      <br>
+                      <p class="font-italic">Check it out <a href="Dumpling.html">here </a>for this Recipe.</p>
+                    </div>
+                    <div class="col-lg-4 text-center order-1 order-lg-2">
+                      <img src="images/dumpling.jpg" alt="" class="img-fluid">
+                    </div>
+                  </div>
+                </div>
+                <div class="tab-pane" id="tab-3">
+                  <div class="row">
+                    <div class="col-lg-8 details order-2 order-lg-1">
+                      <h3>State Govt.College</h3>
+                      <p>This Italian dish is known for its amazing mix of flovours. Although it looks like a hard dish to pull off, it just takes half an hour to make it.</p>
+                      <br>
+                      <p class="font-italic">Check it out <a href="VealMarsala.html">here </a>for this Recipe.</p>
+  
+                    </div>
+                    <div class="col-lg-4 text-center order-1 order-lg-2">
+                      <img src="images/vealmarsala.jpg" alt="" class="img-fluid">
+                    </div>
+                  </div>
+                </div>
+                <div class="tab-pane" id="tab-4">
+                  <div class="row">
+                    <div class="col-lg-8 details order-2 order-lg-1">
+                      <h3>State Private College</h3>
+                      <p>This famous Chinese dish is by far the most fav snack of mine. follow the easy simple steps to keep your day going..</p>
+                      <br>
+                      <p class="font-italic">Check it out <a href="Tofu.html">here </a>for this Recipe.</p>
+  
+                    </div>
+                    <div class="col-lg-4 text-center order-1 order-lg-2">
+                      <img src="images/tofu.jpg" alt="" class="img-fluid">
+                    </div>
+                  </div>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+  
+        </div>
+      </section><!-- End Specials Section -->
+   
+  </main><!-- End #main -->
+
+  <%- include('partials/mfooter.ejs') %>
+  
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/jquery/jquery.min.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/wow/wow.min.js"></script>
+  <script src="assets/vendor/venobox/venobox.min.js"></script>
+  <script src="assets/vendor/superfish/superfish.min.js"></script>
+  <script src="assets/vendor/hoverIntent/hoverIntent.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
