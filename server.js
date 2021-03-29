@@ -6,18 +6,29 @@ const bcrypt = require('bcryptjs');
 const passport = require('passport');
 const flash=require('connect-flash');
 const session=require('express-session');
-const scholarshipRouter=require('./routes/scholarshiparticles');
-const imageRouter=require('./routes/image');
+
+var mentorRouter = require('./routes/mentor');
+var userRouter = require('./routes/user');
 var Strategy = require('passport-local').Strategy;
 const app=express();
+app.use(mentorRouter);
+app.use(userRouter);
+
+const scholarshipRouter=require('./routes/scholarshiparticles');
+const imageRouter=require('./routes/image');
+// var Strategy = require('passport-local').Strategy;
+// const app=express();
 app.use(scholarshipRouter);
+
 app.use(express.static('public'));
 app.use(fileUpload());
 const conn=mysql.createConnection({
     host:'localhost',
     user: 'root',
+
     password: 'sanjana123',
     database: 'challenge'
+
 })
 app.set('view engine','ejs');
 app.use(express.urlencoded({extended:false}));
@@ -28,9 +39,11 @@ var med=require('./routes/med');
 app.get('/',(req,res) => {
     res.render('home');
 });
-app.get('/user_dashboard',(req,res) => {
-    res.render('user_dashboard');
+
+app.get('/user_profile',(req,res) => {
+  res.render('user_profile');
 });
+
 app.use(session({
     secret:'secret',
     resave: false,
@@ -134,17 +147,50 @@ app.use(med)
               if (data[0].role == 'Mentor')
                 res.render('moredetails');
               else
-                res.render('moredetails');
+                res.render('moredetails2');
             }
             else
             {
               if (data[0].role == 'Mentor')
                 res.redirect('mdashboard');
               else
+
                 res.redirect('user_dashboard')
+
             }
         })
     });
+    // to store user input detail on post request
+app.post('/moredetails2', function(req, res, next) {
+    
+  inputData ={
+      firstname: req.body.firstname,
+      lastname: req.body.lastname,
+      dob : req.body.dob,
+      status: req.body.status,
+      aoe:req.body.aoe,
+      occupation:req.body.occupation,
+      email:req.body.email,
+      linkedin_url:req.body.linkedin_url,
+      p_url:req.body.p_url,
+      wish:req.body.wish,
+
+  }
+ 
+if(err) throw err
+  // save users data into database
+  var sql = 'INSERT INTO registration SET ?';
+ db.query(sql, inputData, function (err, data) {
+    if (err) throw err;
+         });
+
+    console.log('got in?');
+var msg ="Welcome to your dashboard!";
+
+res.render('user_dashboard.ejs',{alertMsg:msg});
+
+   
+});
 
     app.post('/mdashboard',(req,res) => {
       Constants = {
@@ -196,6 +242,7 @@ app.get('/profile/:id',imageRouter.profile);
           failureFlash: true }),
         function(req, res) {
           res.redirect('/');
+
         });
       //Authentication using passport
       passport.use(

@@ -3,16 +3,7 @@
 
 <head>
   <%- include('partials/head.ejs') %>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-  <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
-
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
   <style>
     body{
         background: #e8e8f5;
@@ -29,15 +20,11 @@
     font-variant: small-caps;
     padding-left: 37%;
     margin-bottom: 5%;
-    margin-left: 7%;
 }
 .form-group{
   padding-left: 25%;
   margin-bottom: 2.5%;
 }
-
-
-
   </style>
 </head>
 
@@ -45,21 +32,17 @@
 
   <%- include('partials/mheader.ejs') %>
  
-<script>
-  $(function () {
-    $('.selectpicker').selectpicker();
-});
-</script>
+
   
 
   <main id="main" >
-    <div class="container" style="    margin-top: 5%;">
-        <form class="form-horizontal" style="background: #d7d7e2;" action="/mdashboard"  enctype="multipart/form-data" method="POST">
+    <div class="container">
+        <form class="form-horizontal" style="background: #d7d7e2;" action="/register" method="POST">
     <fieldset style= "margin: 10rem;">
     
     <!-- Form Name -->
-    <legend class="col-form-title">Mentor Details</legend>
-    
+    <legend class="col-form-title">Mentee Details</legend>
+    <p style="text-align:center;">Please enter your details so we can get to know you more!</p>
     <!-- Text input-->
     <div class="form-group row">
       <label class="col-md-4 col-form-label" >First Name</label>  
@@ -78,18 +61,30 @@
       </div>
     </div>
     
+    <div class="form-group row">
+      <label class="col-md-4 col-form-label" for="birthday">Date of Birth</label>  
+      <div class="col-md-4">
+      <input id="dob" name="dob" type="date" placeholder="Date of Birth" class="form-control input-md">
+      </div>
+    </div>
 
+    <div class="form-group row">
+      <label class="col-md-4 col-form-label" for="status">Current Status</label>
+      <select type="text"
+      id="status"
+      name="status"
+      placeholder="Status">
+        <option value="Student">Student</option>
+        <option value="Working">Working</option>
+      </select>
+    </div>
     
     <!-- Text input-->
     <div class="form-group row">
       <label class="col-md-4 col-form-label" for="given2">Area of Expertise </label>  
       <div class="col-md-4">
-      <select  class="selectpicker" id="aoe" name="aoe" multiple data-live-search="true">
-        <option>Internet of things</option>
-        <option>AI</option>
-        <option>UI/UX</option>
-        <option>Machine Learning</option>
-    </select> 
+      <input id="aoe" name="aoe" type="text" placeholder="Area of Expertise" class="form-control input-md">
+        
       </div>
     </div>
 
@@ -107,47 +102,38 @@
         
       </div>
     </div>
- 
-    <!-- Select Basic -->
+
     <div class="form-group row">
-      <label class="col-md-4 col-form-label" for="date_of_birth">Company</label>
+      <label class="col-md-4 col-form-label" >Email Id</label>  
       <div class="col-md-4">
-        <div class="input-group">
-          <input id="company" name="company" class="form-control" type="text" placeholder="Eg : Apple ">
-              
-          </span>
-        </div>
-        
+      <input id="email" name="email" type="text" placeholder="Email" class="form-control input-md" >
       </div>
-      </div>
+    </div>
     
        <!-- Text input-->
     <div class="form-group row">
       <label class="col-md-4 col-form-label" for="given2">Linkedin Profile link : </label>  
       <div class="col-md-6">
-      <input id="linkedin_url" name="linkedin_url" type="text" placeholder="Linkedin" class="form-control input-md">
-      
+      <input id="linkedin_url" name="linkedin_url" type="text" placeholder="Linkedin Profile" class="form-control input-md"> 
     </div>
     </div>
 
     <div class="form-group row">
       <label class="col-md-4 col-form-label" for="given2">Portfolio link : </label>  
       <div class="col-md-6">
-      <input id="p_url" name="p_url" type="text" placeholder="Portfolio link" class="form-control input-md">
-      
+      <input id="p_url" name="p_url" type="text" placeholder="Portfolio link" class="form-control input-md"> 
     </div>
     </div>
-
+        
     <div class="form-group row">
-      <label class="col-md-4 col-form-label" for="given2">Profile Picture: </label>  
+      <label class="col-md-4 col-form-label" for="given2">What do you wish to acheive from HerStory? </label>  
       <div class="col-md-6">
-      <input id="p_pic" name="p_pic" type="file" placeholder="Area of Expertise" class="form-control input-md">
+      <input id="wish" name="wish" type="text" placeholder="Enter text" class="form-control input-md">
       
     </div>
     </div>
 
-
-     
+    
  
     
     <!-- Button -->

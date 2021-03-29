@@ -18,3 +18,15 @@ CREATE TABLE Mentors (
 	`Profile_url` VARCHAR(100) NOT NULL,
 	PRIMARY KEY (`mid`)
 ) ENGINE=InnoDB;
+
+create table user_info(
+	user_id int, 
+	Fname varchar(20),
+	Lname varchar(20),
+	dob date,status varchar(20),
+	expertise varchar(40),
+	occupation varchar(40),
+	email varchar(20),
+	linkedin varchar(40),
+	profile_link varchar(40),
+	wish varchar(40));

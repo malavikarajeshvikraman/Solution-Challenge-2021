@@ -3,7 +3,7 @@ var conn = mysql.createConnection({
     connectionList:10,
     password:'sanjana123',
    user:'root',
-    database:'challenge',
+    database:'challange',
     host:'localhost',
     port:'3306',
     dateStrings:true,
