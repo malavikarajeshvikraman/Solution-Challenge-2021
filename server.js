@@ -16,12 +16,15 @@ app.use(fileUpload());
 const conn=mysql.createConnection({
     host:'localhost',
     user: 'root',
-    password: '12345',
+    password: 'sandra',
     database: 'challenge'
 })
 app.set('view engine','ejs');
 app.use(express.urlencoded({extended:false}));
 var route=require('./routes/after');
+var eng=require('./routes/eng');
+var iit=require('./routes/iit');
+
 app.get('/',(req,res) => {
     res.render('home');
 });
@@ -38,6 +41,9 @@ app.use(session({
       secure:false
       }}));
 app.use(route)
+app.use(eng)
+app.use(iit)
+
       app.use(flash());
       //passport middlewares
       app.use(passport.initialize());
