@@ -6,18 +6,17 @@ const bcrypt = require('bcryptjs');
 const passport = require('passport');
 const flash=require('connect-flash');
 const session=require('express-session');
-var mentorRouter = require('./routes/mentor');
 const scholarshipRouter=require('./routes/scholarshiparticles');
+const imageRouter=require('./routes/image');
 var Strategy = require('passport-local').Strategy;
 const app=express();
-app.use(mentorRouter);
 app.use(scholarshipRouter);
 app.use(express.static('public'));
 app.use(fileUpload());
 const conn=mysql.createConnection({
     host:'localhost',
     user: 'root',
-    password: 'sandra',
+    password: '12345',
     database: 'challenge'
 })
 app.set('view engine','ejs');
@@ -117,6 +116,15 @@ app.use(iit)
         
         res.render('login');
       });
+
+      app.get('/mdashboard',(req,res) => {
+        var sql="SELECT * FROM `mentors` WHERE `mid`='"+req.session.mid+"'"; 
+        conn.query(sql, function(err, result){
+         console.log("result id",result);
+          res.render('mdashboard',{data:result,email:req.session.email});
+       });
+    });
+
       
      app.get('/dashboard',(req,res) => {
         var sql='SELECT * FROM user WHERE email = (?)';
@@ -132,38 +140,49 @@ app.use(iit)
             else
             {
               if (data[0].role == 'Mentor')
-                res.render('mdashboard');
+                res.redirect('mdashboard');
               else
-                res.render('user_dashboard')
+                res.redirect('user_dashboard')
             }
         })
     });
 
-    app.post('/dashboard',(req,res) => {
+    app.post('/mdashboard',(req,res) => {
       Constants = {
         fname :req.body.firstname,
         lname:req.body.lastname,
         aoe : req.body.aoe,
         occ :req.body.occupation,
         l_url:req.body.linkedin_url,
-        p_url:req.body.p_url
+        p_url:req.body.p_url,
+        comp:req.body.company,
 
       }
-      console.log(Constants);
+      console.log(Constants.aoe)
+		var file= req.files.p_pic;
+		var img_name=file.name;
       var sql='SELECT * FROM user WHERE email = ?';
       conn.query(sql, [req.session.email], function (err, data, fields) {
           if(err) throw err
-          var sql1 = 'Insert into mentors values (?,?,?,?,?,?,?,?);';
-          db.query(sql1,[ Constants.fname,Constants.lname,Constants.aoe,Constants.occupation,Constants.company,Constants.l_url,Constants.p_url], function (err, data) {
+        
+          var sql1 = 'Insert into mentors values (?,?,?,?,?,?,?,?,?);';
+          conn.query(sql1,[ data[0].id,Constants.fname,Constants.lname,Constants.aoe.join(','),Constants.occ,Constants.comp,Constants.l_url,Constants.p_url,file.name], function (err, data1) {
+            if (err) throw err;
+            file.mv('public/images/' + img_name)
+                 });
+          var sql2 = 'UPDATE user set fill = 1 where email = ?';
+          conn.query(sql2,[req.session.email], function (err, data) {
             if (err) throw err;
                  });
-       
-       res.render('mdashboard');
+              
+       res.redirect('mdashboard');
       });
     });
 
-          
+
+             
         
+app.get('/profile/:id',imageRouter.profile);
       
       app.get('/logout',
         function(req, res){
@@ -204,7 +223,9 @@ app.use(iit)
                 console.log(rows[0].password);
                 bcrypt.compare(password,rows[0].password,function(err,result){
                   if(result){
-                      req.session.email=rows[0].email;
+                      {req.session.email=rows[0].email;
+                        req.session.mid=rows[0].id;
+                      }
                     return done(null, rows[0]);
                   }
                   else{
@@ -232,6 +253,7 @@ app.use(iit)
           done(err, rows[0]);
         });
       });
+
       app.post('/new',(req,res)=>{
         console.log(req.body);
         var post=req.body;
