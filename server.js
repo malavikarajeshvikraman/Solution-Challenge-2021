@@ -23,7 +23,7 @@ app.set('view engine','ejs');
 app.use(express.urlencoded({extended:false}));
 var route=require('./routes/after');
 var eng=require('./routes/eng');
-var iit=require('./routes/iit');
+var med=require('./routes/med');
 
 app.get('/',(req,res) => {
     res.render('home');
@@ -42,8 +42,7 @@ app.use(session({
       }}));
 app.use(route)
 app.use(eng)
-app.use(iit)
-
+app.use(med)
       app.use(flash());
       //passport middlewares
       app.use(passport.initialize());
