@@ -6,23 +6,36 @@ const bcrypt = require('bcryptjs');
 const passport = require('passport');
 const flash=require('connect-flash');
 const session=require('express-session');
+
 var mentorRouter = require('./routes/mentor');
 var userRouter = require('./routes/user');
 var Strategy = require('passport-local').Strategy;
 const app=express();
 app.use(mentorRouter);
 app.use(userRouter);
+
+const scholarshipRouter=require('./routes/scholarshiparticles');
+const imageRouter=require('./routes/image');
+// var Strategy = require('passport-local').Strategy;
+// const app=express();
+app.use(scholarshipRouter);
+
 app.use(express.static('public'));
 app.use(fileUpload());
 const conn=mysql.createConnection({
     host:'localhost',
     user: 'root',
-    password: '12345',
-    database: 'challange'
+
+    password: 'sanjana123',
+    database: 'challenge'
+
 })
 app.set('view engine','ejs');
 app.use(express.urlencoded({extended:false}));
 var route=require('./routes/after');
+var eng=require('./routes/eng');
+var med=require('./routes/med');
+
 app.get('/',(req,res) => {
     res.render('home');
 });
@@ -41,6 +54,8 @@ app.use(session({
       secure:false
       }}));
 app.use(route)
+app.use(eng)
+app.use(med)
       app.use(flash());
       //passport middlewares
       app.use(passport.initialize());
@@ -55,6 +70,9 @@ app.use(route)
       //REST APIs
       app.get('/register',(req,res)=>{
         res.render('register');
+      });
+      app.get('/restart',(req,res)=>{
+        res.render('restartcareer');
       });
       app.get('/',(req,res)=>{
         res.render('home');
@@ -110,6 +128,15 @@ app.use(route)
         
         res.render('login');
       });
+
+      app.get('/mdashboard',(req,res) => {
+        var sql="SELECT * FROM `mentors` WHERE `mid`='"+req.session.mid+"'"; 
+        conn.query(sql, function(err, result){
+         console.log("result id",result);
+          res.render('mdashboard',{data:result,email:req.session.email});
+       });
+    });
+
       
      app.get('/dashboard',(req,res) => {
         var sql='SELECT * FROM user WHERE email = (?)';
@@ -125,9 +152,11 @@ app.use(route)
             else
             {
               if (data[0].role == 'Mentor')
-                res.render('mdashboard');
+                res.redirect('mdashboard');
               else
-                res.render('user_dashboard');
+
+                res.redirect('user_dashboard')
+
             }
         })
     });
@@ -163,17 +192,42 @@ res.render('user_dashboard.ejs',{alertMsg:msg});
    
 });
 
-    app.post('/dashboard',(req,res) => {
+    app.post('/mdashboard',(req,res) => {
+      Constants = {
+        fname :req.body.firstname,
+        lname:req.body.lastname,
+        aoe : req.body.aoe,
+        occ :req.body.occupation,
+        l_url:req.body.linkedin_url,
+        p_url:req.body.p_url,
+        comp:req.body.company,
 
+      }
+      console.log(Constants.aoe)
+		var file= req.files.p_pic;
+		var img_name=file.name;
       var sql='SELECT * FROM user WHERE email = ?';
       conn.query(sql, [req.session.email], function (err, data, fields) {
           if(err) throw err
+        
+          var sql1 = 'Insert into mentors values (?,?,?,?,?,?,?,?,?);';
+          conn.query(sql1,[ data[0].id,Constants.fname,Constants.lname,Constants.aoe.join(','),Constants.occ,Constants.comp,Constants.l_url,Constants.p_url,file.name], function (err, data1) {
+            if (err) throw err;
+            file.mv('public/images/' + img_name)
+                 });
+          var sql2 = 'UPDATE user set fill = 1 where email = ?';
+          conn.query(sql2,[req.session.email], function (err, data) {
+            if (err) throw err;
+                 });
+              
+       res.redirect('mdashboard');
+      });
+    });
 
-          var sql1 = 'Insert into mentors'
-          
-          
-      })
-  });
+
+             
+        
+app.get('/profile/:id',imageRouter.profile);
       
       app.get('/logout',
         function(req, res){
@@ -215,7 +269,9 @@ res.render('user_dashboard.ejs',{alertMsg:msg});
                 console.log(rows[0].password);
                 bcrypt.compare(password,rows[0].password,function(err,result){
                   if(result){
-                      req.session.email=rows[0].email;
+                      {req.session.email=rows[0].email;
+                        req.session.mid=rows[0].id;
+                      }
                     return done(null, rows[0]);
                   }
                   else{
@@ -243,9 +299,23 @@ res.render('user_dashboard.ejs',{alertMsg:msg});
           done(err, rows[0]);
         });
       });
+
+      app.post('/new',(req,res)=>{
+        console.log(req.body);
+        var post=req.body;
+        var title=post.title;
+        var description=post.description;
+        var link=post.link;
+        var sql="INSERT INTO sarticle(title,description,link) values (?,?,?)";
+        var newarticle=[title,description,link];
+        conn.query(sql,newarticle,(err,data)=>{
+          if(err) throw err;  
+          res.redirect('/articles');
+        });
+    });    
       
 
 
 
-const PORT=process.env.port || 8000;
+const PORT=process.env.port || 5000;
 app.listen(PORT);
