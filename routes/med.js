@@ -2,8 +2,8 @@ var express= require('express');
 var router=express.Router();
 
 
-router.get("/iit",function(req, res){
-    res.render("iit.ejs");
+router.get("/med",function(req, res){
+    res.render("med.ejs");
 });
 
 module.exports = router;
