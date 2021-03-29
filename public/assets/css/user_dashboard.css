@@ -60,6 +60,13 @@ body {
   color: #f00af0;
 }
 
+.link_search{
+  text-decoration: none;
+  color:#4d1355;
+  font-weight: bold;
+  
+}
+
 .container {
   display: grid;
   height: 100vh;
@@ -103,6 +110,7 @@ body {
   color: rgb(122,32,72);
   border-bottom: 3px solid rgb(122,32,72);
   padding-bottom: 12px;
+  
 }
 
 .navbar__right {

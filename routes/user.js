@@ -6,7 +6,6 @@ router.get('/user_dashboard',(req,res) => {
     res.render('user_dashboard');
 });
 
-
 // router.get('/user_dashboard/user_profile', function(req, res, next) {
 //     var sql='SELECT * FROM user WHERE username = ?';
 //     db.query(sql, [req.session.username ], function (err, data, fields) {
@@ -17,9 +16,22 @@ router.get('/user_dashboard',(req,res) => {
 //         }else{
 //             res.redirect('/login');
 //         }
-//     })
-    
+//     })   
 // });
+router.get('/logout',
+        function(req, res){
+          req.logout();
+          res.redirect('/login');
+});
 
+router.get('/user_profile',(req,res) => {
+    
+    res.render('user_profile');
+    
+});
+
+
+
+      
 
 module.exports = router;

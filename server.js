@@ -120,7 +120,7 @@ app.use(route)
               if (data[0].role == 'Mentor')
                 res.render('moredetails');
               else
-                res.render('moredetails');
+                res.render('moredetails2');
             }
             else
             {
@@ -131,6 +131,37 @@ app.use(route)
             }
         })
     });
+    // to store user input detail on post request
+app.post('/moredetails2', function(req, res, next) {
+    
+  inputData ={
+      firstname: req.body.firstname,
+      lastname: req.body.lastname,
+      dob : req.body.dob,
+      status: req.body.status,
+      aoe:req.body.aoe,
+      occupation:req.body.occupation,
+      email:req.body.email,
+      linkedin_url:req.body.linkedin_url,
+      p_url:req.body.p_url,
+      wish:req.body.wish,
+
+  }
+ 
+if(err) throw err
+  // save users data into database
+  var sql = 'INSERT INTO registration SET ?';
+ db.query(sql, inputData, function (err, data) {
+    if (err) throw err;
+         });
+
+    console.log('got in?');
+var msg ="Welcome to your dashboard!";
+
+res.render('user_dashboard.ejs',{alertMsg:msg});
+
+   
+});
 
     app.post('/dashboard',(req,res) => {
 
@@ -152,7 +183,7 @@ app.use(route)
       
       app.post('/login', 
         passport.authenticate('local-login', { 
-          successRedirect: '/user_dashboard',
+          successRedirect: '/dashboard',
           failureRedirect: '/login',
           failureFlash: true }),
         function(req, res) {
