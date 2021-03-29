@@ -16,7 +16,7 @@ app.use(fileUpload());
 const conn=mysql.createConnection({
     host:'localhost',
     user: 'root',
-    password: '12345',
+    password: 'sanjana123',
     database: 'challenge'
 })
 app.set('view engine','ejs');
