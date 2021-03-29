@@ -78,8 +78,8 @@
     <div class="jumbotron">
     <h2>Scholarships for women</h2>
   </div>
-  <div class="center"><img src="assets/img/graduation.jpg" width=1150px><br><br><br>
-      <p>Women tend to be largely under represented in STEM (science, technology, engineering, and math) fields.Because of the gender gap in STEM fields, there’s an effort to attract more women to STEM. Part of that effort is through college scholarships. If you’re planning to study STEM in college, check out the following links to learn about some of the best scholarships for women in STEM. </p>
+  <div class="center"><img src="assets/img/graduation.jpg" width=1150px style="display: block;width: 75%; margin-left:auto; margin-right:auto;"><br><br><br>
+      <p style="padding-left: 20px; padding-right: 20px;">Women tend to be largely under represented in STEM (science, technology, engineering, and math) fields.Because of the gender gap in STEM fields, there’s an effort to attract more women to STEM. Part of that effort is through college scholarships. If you’re planning to study STEM in college, check out the following links to learn about some of the best scholarships for women in STEM. </p>
       <ul><h3>STEM</h3>
           <li><a href="https://www.britishcouncil.org/study-work-abroad/in-uk/scholarship-women-stem">British Council scholarships</a></li>
           <li><a href="https://www.iie.org/Programs/WeTech/STEM-Scholarships-for-Women/Qualcomm-Global-Scholars-Program/India">Qualcomm Global Scholars Program</a></li> 
@@ -89,17 +89,17 @@
       </ul>
   </div>
   <div class="header">
-    <h3>Other scholarships:</h3>
+    <h3 style="padding-left: 20px; padding-right: 20px;">Other scholarships:</h3>
   </div>
   <div class="row">
     <% articledata.forEach(articledata=>{ %>
 
     <div class="column">
-      <div class="card">
-        <h2><%=articledata.title %></h2>
-        <p><%=articledata.description %></p>
-        <p><form action="<%=articledata.link %>">
-          <input type="submit" value="More Info" />
+      <div class="card" style="padding-left: 20px; padding-right: 20px;">
+        <h2 style="padding-left: 20px; padding-right: 20px;"><%=articledata.title %></h2>
+        <p style="padding-left: 20px; padding-right: 20px;"><%=articledata.description %></p>
+        <p style="padding-left: 20px; padding-right: 20px;"><form action="<%=articledata.link %>">
+          <input style=" display:block; margin-left: 20px; margin-right: auto;" type="submit" value="More Info"/>
       </form></p>
 
       </div>
@@ -128,7 +128,7 @@
 
     
     </div>
-    <p>Want to add a new scholarship?<a href="newscholarship" style="color:blue">Add</a></p>
+    <p style="padding-left: 20px; padding-right: 20px;">Want to add a new scholarship?<a href="newscholarship" style="color:blue">Add</a></p>
     </div>
   <br> <br><br><br>
   </main>
