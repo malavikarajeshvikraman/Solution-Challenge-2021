@@ -7,11 +7,9 @@ const passport = require('passport');
 const flash=require('connect-flash');
 const session=require('express-session');
 
-var mentorRouter = require('./routes/mentor');
 var userRouter = require('./routes/user');
 var Strategy = require('passport-local').Strategy;
 const app=express();
-app.use(mentorRouter);
 app.use(userRouter);
 
 const scholarshipRouter=require('./routes/scholarshiparticles');
@@ -26,7 +24,7 @@ const conn=mysql.createConnection({
     host:'localhost',
     user: 'root',
 
-    password: 'sanjana123',
+    password: 'sandra',
     database: 'challenge'
 
 })
@@ -35,6 +33,7 @@ app.use(express.urlencoded({extended:false}));
 var route=require('./routes/after');
 var eng=require('./routes/eng');
 var med=require('./routes/med');
+var webdev=require('./routes/webdev');
 
 app.get('/',(req,res) => {
     res.render('home');
@@ -56,6 +55,8 @@ app.use(session({
 app.use(route)
 app.use(eng)
 app.use(med)
+app.use(webdev)
+
       app.use(flash());
       //passport middlewares
       app.use(passport.initialize());
