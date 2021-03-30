@@ -6,12 +6,9 @@ const bcrypt = require('bcryptjs');
 const passport = require('passport');
 const flash=require('connect-flash');
 const session=require('express-session');
-
-var mentorRouter = require('./routes/mentor');
 var userRouter = require('./routes/user');
 var Strategy = require('passport-local').Strategy;
 const app=express();
-app.use(mentorRouter);
 app.use(userRouter);
 
 const scholarshipRouter=require('./routes/scholarshiparticles');
