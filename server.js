@@ -177,9 +177,9 @@ app.post('/moredetails2', function(req, res, next) {
       Lname: req.body.lastname,
       dob : req.body.dob,
       status: req.body.status,
-      expertise:req.body.aoe,
+      expertise:req.body.aoe.join(','),
       occupation:req.body.occupation,
-      email:req.body.email,
+      email:req.session.email,
       linkedin:req.body.linkedin_url,
       profile_link:req.body.p_url,
       wish:req.body.wish,
@@ -203,6 +203,16 @@ app.post('/moredetails2', function(req, res, next) {
       });
 
    
+});
+
+app.get('/user_dashboard',(req,res) => {
+  var sql='SELECT * FROM user_info WHERE email = ?';
+       conn.query(sql,[req.session.email], function (err, data1) {
+          if (err) throw err;
+          var value= data1[0].expertise.split(',');
+          res.render('user_dashboard',{data : value});
+               });
+ 
 });
 
     app.post('/mdashboard',(req,res) => {
@@ -232,7 +242,14 @@ app.post('/moredetails2', function(req, res, next) {
           conn.query(sql2,[req.session.email], function (err, data) {
             if (err) throw err;
                  });
-              
+
+          Constants.aoe.forEach(myFunction)
+
+         function myFunction(S) {
+          var sql3 = 'insert into persons values(?,?,?,?,?)';
+          conn.query(sql3,[ data[0].id,Constants.fname,Constants.lname,Constants.occ,S], function (err, data) {
+            if (err) throw err;
+                        }); }
        res.redirect('mdashboard');
       });
     });
