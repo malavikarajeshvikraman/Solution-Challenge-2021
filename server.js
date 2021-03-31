@@ -38,6 +38,7 @@ var law=require('./routes/law');
 var commerce=require('./routes/commerce');
 var architecture=require('./routes/architecture');
 var arts=require('./routes/arts');
+var intern=require('./routes/intern');
 
 
 app.get('/',(req,res) => {
@@ -65,6 +66,8 @@ app.use(law)
 app.use(commerce)
 app.use(architecture)
 app.use(arts)
+app.use(intern)
+
       app.use(flash());
       //passport middlewares
       app.use(passport.initialize());
