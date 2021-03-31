@@ -129,8 +129,9 @@
                         <a href="<%- data[0].Profile_url%>">Website Link</a><br/>
                         <a href="<%- data[0].Linkedin_url%>">Linkedin Profile</a>
                         <p>SKILLS</p>
+                        <% rr = { 'Web Development' : '/webdev', 'Internet of things' : '/iot','AI': '/ai' , 'UI/UX' : '/uiux','Machine Learning':'/ML'}  %>
                         <% data[0].Aoe.split(',').forEach(function(posts){  %>
-                        <a href=""><%= posts %></a><br/>
+                        <a href="<%- rr[posts] %>"><%= posts %></a><br/>
                         <% }) %>
                     </div>
                 </div>
