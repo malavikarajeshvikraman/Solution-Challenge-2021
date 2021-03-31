@@ -828,7 +828,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 #more-features h4 {
-  margin-left: 100px;
+  
   font-weight: 700;
   margin-bottom: 15px;
   font-size: 18px;
@@ -946,9 +946,7 @@ body.mobile-nav-active #mobile-nav-toggle {
   font-family: "Montserrat", sans-serif;
 }
 
-#pricing .featured {
-  border: 2px solid rgb(30,39,97) ;
-}
+
 
 #pricing .featured .get-started-btn {
   background: linear-gradient(45deg, rgb(122,32,72)),rgb(30,39,97) ;

@@ -24,8 +24,8 @@ const conn=mysql.createConnection({
     host:'localhost',
     user: 'root',
 
-    password: 'sandra',
-    database: 'challenge'
+    password: '12345',
+    database: 'challange'
 
 })
 app.set('view engine','ejs');
