@@ -34,6 +34,11 @@ var route=require('./routes/after');
 var eng=require('./routes/eng');
 var med=require('./routes/med');
 var webdev=require('./routes/webdev');
+var law=require('./routes/law');
+var commerce=require('./routes/commerce');
+var architecture=require('./routes/architecture');
+var arts=require('./routes/arts');
+
 
 app.get('/',(req,res) => {
     res.render('home');
@@ -56,7 +61,10 @@ app.use(route)
 app.use(eng)
 app.use(med)
 app.use(webdev)
-
+app.use(law)
+app.use(commerce)
+app.use(architecture)
+app.use(arts)
       app.use(flash());
       //passport middlewares
       app.use(passport.initialize());
