@@ -2,11 +2,11 @@ const express=require('express');
 const expressLayouts=require('express-ejs-layouts');
 const fileUpload = require('express-fileupload');
 const mysql = require('mysql');
+
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
 const flash=require('connect-flash');
 const session=require('express-session');
-
 var userRouter = require('./routes/user');
 var Strategy = require('passport-local').Strategy;
 const app=express();
@@ -24,7 +24,7 @@ const conn=mysql.createConnection({
     host:'localhost',
     user: 'root',
 
-    password: 'sandra',
+    password: '12345',
     database: 'challenge'
 
 })
@@ -176,32 +176,46 @@ app.use(intern)
 app.post('/moredetails2', function(req, res, next) {
     
   inputData ={
-      firstname: req.body.firstname,
-      lastname: req.body.lastname,
+      Fname: req.body.firstname,
+      Lname: req.body.lastname,
       dob : req.body.dob,
       status: req.body.status,
-      aoe:req.body.aoe,
+      expertise:req.body.aoe.join(','),
       occupation:req.body.occupation,
-      email:req.body.email,
-      linkedin_url:req.body.linkedin_url,
-      p_url:req.body.p_url,
+      email:req.session.email,
+      linkedin:req.body.linkedin_url,
+      profile_link:req.body.p_url,
       wish:req.body.wish,
 
   }
  
-if(err) throw err
-  // save users data into database
-  var sql = 'INSERT INTO registration SET ?';
- db.query(sql, inputData, function (err, data) {
-    if (err) throw err;
-         });
-
-    console.log('got in?');
-var msg ="Welcome to your dashboard!";
-
-res.render('user_dashboard.ejs',{alertMsg:msg});
+  var sql='SELECT * FROM user WHERE email = ?';
+      conn.query(sql, [req.session.email], function (err, data, fields) {
+          if(err) throw err
+        
+          var sql1 = 'INSERT INTO user_info SET ? ;';
+          conn.query(sql1,inputData, function (err, data1) {
+            if (err) throw err;
+                 });
+          var sql2 = 'UPDATE user set fill = 1 where email = ?';
+          conn.query(sql2,[req.session.email], function (err, data) {
+            if (err) throw err;
+                 });
+              
+       res.redirect('user_dashboard');
+      });
 
    
+});
+
+app.get('/user_dashboard',(req,res) => {
+  var sql='SELECT * FROM user_info WHERE email = ?';
+       conn.query(sql,[req.session.email], function (err, data1) {
+          if (err) throw err;
+          var value= data1[0].expertise.split(',');
+          res.render('user_dashboard',{data : value});
+               });
+ 
 });
 
     app.post('/mdashboard',(req,res) => {
@@ -231,7 +245,14 @@ res.render('user_dashboard.ejs',{alertMsg:msg});
           conn.query(sql2,[req.session.email], function (err, data) {
             if (err) throw err;
                  });
-              
+
+          Constants.aoe.forEach(myFunction)
+
+         function myFunction(S) {
+          var sql3 = 'insert into persons values(?,?,?,?,?)';
+          conn.query(sql3,[ data[0].id,Constants.fname,Constants.lname,Constants.occ,S], function (err, data) {
+            if (err) throw err;
+                        }); }
        res.redirect('mdashboard');
       });
     });
@@ -326,8 +347,9 @@ app.get('/profile/:id',imageRouter.profile);
         });
     });    
       
-
-
-
-const PORT=process.env.port || 5000;
+    const PORT=process.env.port || 5000;
 app.listen(PORT);
+
+  
+
+
