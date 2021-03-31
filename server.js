@@ -2,11 +2,11 @@ const express=require('express');
 const expressLayouts=require('express-ejs-layouts');
 const fileUpload = require('express-fileupload');
 const mysql = require('mysql');
+
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
 const flash=require('connect-flash');
 const session=require('express-session');
-
 var userRouter = require('./routes/user');
 var Strategy = require('passport-local').Strategy;
 const app=express();
@@ -38,6 +38,7 @@ var law=require('./routes/law');
 var commerce=require('./routes/commerce');
 var architecture=require('./routes/architecture');
 var arts=require('./routes/arts');
+var intern=require('./routes/intern');
 
 
 app.get('/',(req,res) => {
@@ -65,6 +66,8 @@ app.use(law)
 app.use(commerce)
 app.use(architecture)
 app.use(arts)
+app.use(intern)
+
       app.use(flash());
       //passport middlewares
       app.use(passport.initialize());
@@ -173,32 +176,46 @@ app.use(arts)
 app.post('/moredetails2', function(req, res, next) {
     
   inputData ={
-      firstname: req.body.firstname,
-      lastname: req.body.lastname,
+      Fname: req.body.firstname,
+      Lname: req.body.lastname,
       dob : req.body.dob,
       status: req.body.status,
-      aoe:req.body.aoe,
+      expertise:req.body.aoe.join(','),
       occupation:req.body.occupation,
-      email:req.body.email,
-      linkedin_url:req.body.linkedin_url,
-      p_url:req.body.p_url,
+      email:req.session.email,
+      linkedin:req.body.linkedin_url,
+      profile_link:req.body.p_url,
       wish:req.body.wish,
 
   }
  
-if(err) throw err
-  // save users data into database
-  var sql = 'INSERT INTO registration SET ?';
- db.query(sql, inputData, function (err, data) {
-    if (err) throw err;
-         });
-
-    console.log('got in?');
-var msg ="Welcome to your dashboard!";
-
-res.render('user_dashboard.ejs',{alertMsg:msg});
+  var sql='SELECT * FROM user WHERE email = ?';
+      conn.query(sql, [req.session.email], function (err, data, fields) {
+          if(err) throw err
+        
+          var sql1 = 'INSERT INTO user_info SET ? ;';
+          conn.query(sql1,inputData, function (err, data1) {
+            if (err) throw err;
+                 });
+          var sql2 = 'UPDATE user set fill = 1 where email = ?';
+          conn.query(sql2,[req.session.email], function (err, data) {
+            if (err) throw err;
+                 });
+              
+       res.redirect('user_dashboard');
+      });
 
    
+});
+
+app.get('/user_dashboard',(req,res) => {
+  var sql='SELECT * FROM user_info WHERE email = ?';
+       conn.query(sql,[req.session.email], function (err, data1) {
+          if (err) throw err;
+          var value= data1[0].expertise.split(',');
+          res.render('user_dashboard',{data : value});
+               });
+ 
 });
 
     app.post('/mdashboard',(req,res) => {
@@ -219,8 +236,8 @@ res.render('user_dashboard.ejs',{alertMsg:msg});
       conn.query(sql, [req.session.email], function (err, data, fields) {
           if(err) throw err
         
-          var sql1 = 'Insert into mentors values (?,?,?,?,?,?,?,?,?);';
-          conn.query(sql1,[ data[0].id,Constants.fname,Constants.lname,Constants.aoe.join(','),Constants.occ,Constants.comp,Constants.l_url,Constants.p_url,file.name], function (err, data1) {
+          var sql1 = 'Insert into mentors values (?,?,?,?,?,?,?,?,?,?);';
+          conn.query(sql1,[ data[0].id,Constants.fname,Constants.lname,Constants.aoe.join(','),Constants.occ,Constants.comp,Constants.l_url,Constants.p_url,file.name,req.session.email], function (err, data1) {
             if (err) throw err;
             file.mv('public/images/' + img_name)
                  });
@@ -228,15 +245,53 @@ res.render('user_dashboard.ejs',{alertMsg:msg});
           conn.query(sql2,[req.session.email], function (err, data) {
             if (err) throw err;
                  });
-              
+
+          Constants.aoe.forEach(myFunction)
+
+         function myFunction(S) {
+          var sql3 = 'insert into persons values(?,?,?,?,?,?)';
+          conn.query(sql3,[ data[0].id,Constants.fname,Constants.lname,Constants.occ,S,file.name], function (err, data) {
+            if (err) throw err;
+                        }); }
        res.redirect('mdashboard');
       });
     });
 
 
-             
+app.get('/mentors',function(req, res){
+  var value1,value2,value3 ;
+  var sql1 = 'select * from  persons  where Aoe = "Web Development";';
+  conn.query(sql1, function (err, data1) {
+    value1=data1;
+    var sql2 = 'select * from  persons  where Aoe = "UI/UX";';
+  conn.query(sql2, function (err, data2) {
+    value2=data2;
+    var sql3 = 'select * from  persons  where Aoe = "AI";';
+    conn.query(sql3, function (err, data3) {
+      value3=data3;
+      console.log(value1,value2,value3);
+      setTimeout(func1, 300);
+      function func1 () {
+  res.render('mentors',{data1:value1,data2:value2,data3:value3});}
+            });
+          });
+         });
+  
+ 
+
+          
+  
+});
         
-app.get('/profile/:id',imageRouter.profile);
+app.get('/profile/:id',function(req, res){
+	var id = req.params.id;
+    var sql="SELECT * FROM mentors WHERE mid='"+id+"'"; 
+    conn.query(sql, function(err, result){
+      console.log(result)
+        res.render('mdashboard',{data:result,email:result[0].email}); 
+      
+   });
+});
       
       app.get('/logout',
         function(req, res){
@@ -323,8 +378,9 @@ app.get('/profile/:id',imageRouter.profile);
         });
     });    
       
-
-
-
-const PORT=process.env.port || 5000;
+    const PORT=process.env.port || 5000;
 app.listen(PORT);
+
+  
+
+

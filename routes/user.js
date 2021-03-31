@@ -2,9 +2,7 @@ var express = require('express');
 var router = express.Router();
 var db=require('../db/data');
 
-router.get('/user_dashboard',(req,res) => {
-    res.render('user_dashboard');
-});
+
 
 // router.get('/user_dashboard/user_profile', function(req, res, next) {
 //     var sql='SELECT * FROM user WHERE username = ?';
