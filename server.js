@@ -34,6 +34,7 @@ var route=require('./routes/after');
 var eng=require('./routes/eng');
 var med=require('./routes/med');
 var webdev=require('./routes/webdev');
+
 var law=require('./routes/law');
 var commerce=require('./routes/commerce');
 var architecture=require('./routes/architecture');
@@ -43,6 +44,9 @@ var intern=require('./routes/intern');
 
 app.get('/',(req,res) => {
     res.render('home');
+});
+app.get('/ai',(req,res) => {
+  res.render('ai');
 });
 
 app.get('/user_profile',(req,res) => {
@@ -62,6 +66,7 @@ app.use(route)
 app.use(eng)
 app.use(med)
 app.use(webdev)
+
 app.use(law)
 app.use(commerce)
 app.use(architecture)
