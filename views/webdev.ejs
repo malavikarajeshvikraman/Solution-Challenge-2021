@@ -208,7 +208,7 @@
 
 .about .content ul i {
   font-size: 20px;
-  color: rgb(146,216,42);
+  color: rgb(163, 57, 105);
   position: absolute;
   left: 0;
   top: 2px;
@@ -229,7 +229,7 @@
 .about .play-btn {
   width: 94px;
   height: 94px;
-  background: radial-gradient(rgb(146,216,42) 50%, rgba(114, 255, 59, 0.4) 52%);
+  background: radial-gradient(rgb(163, 57, 105) 50%, rgba(114, 255, 59, 0.4) 52%);
   border-radius: 50%;
   display: block;
   position: absolute;
@@ -270,14 +270,14 @@
   animation-timing-function: steps;
   opacity: 1;
   border-radius: 50%;
-  border: 5px solid rgba(154, 255, 59, 0.7);
+  border: 5px solid rgba(163, 57, 105,0.7);
   top: -15%;
   left: -15%;
   background: rgba(198, 16, 0, 0);
 }
 
 .about .play-btn:hover::after {
-  border-left: 15px solid rgb(146,216,42);
+  border-left: 15px solid rgb(163, 57, 105);
   transform: scale(20);
 }
 
@@ -337,6 +337,43 @@
   }
 }
 /*--------------------------------------------------------------
+# Sections General
+--------------------------------------------------------------*/
+section {
+  padding: 60px 0;
+}
+
+.section-bg {
+  background-color: white;
+}
+
+.section-title {
+  text-align: center;
+  padding-bottom: 30px;
+}
+
+.section-title h2 {
+  margin: 15px 0 0 0;
+  font-size: 32px;
+  font-weight: 700;
+  color: #565f50;
+}
+
+.section-title h2 span {
+  color: rgb(163, 57, 105);
+}
+
+.section-title p {
+  margin: 15px auto 0 auto;
+  font-weight: 300;
+}
+
+@media (min-width: 1024px) {
+  .section-title p {
+    width: 50%;
+  }
+}
+/*--------------------------------------------------------------
 # Specials
 --------------------------------------------------------------*/
 .specials {
@@ -359,12 +396,12 @@
 }
 
 .specials .nav-link:hover {
-  color: rgb(146,216,42);
+  color: rgb(163, 57, 105);
 }
 
 .specials .nav-link.active {
-  color: rgb(146,216,42);
-  border-color: rgb(146,216,42);
+  color: rgb(163, 57, 105);
+  border-color: rgb(163, 57, 105);
 }
 
 .specials .tab-pane.active {
@@ -394,7 +431,7 @@
   }
   .specials .nav-link.active {
     color: #fff;
-    background: rgb(146,216,42);
+    background: rgb(163, 57, 105);
   }
 }
 
@@ -413,7 +450,7 @@
 
         <div class="row">
 
-          <div class="col-lg-5 align-items-stretch video-box" style='background-image: url("assets/img/team/team-1.jpg");'>
+          <div class="col-lg-5 align-items-stretch video-box" style='background-image: url("images/webdev.jpg");'>
             <!--<a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="venobox play-btn mb-4" data-vbtype="video" data-autoplay="true"></a>-->
           </div>
 
@@ -423,16 +460,7 @@
               <h3><strong>Web Development</strong></h3>
               <p class="font-italic">
                 Web development is the building and maintenance of websites; it's the work that happens behind the scenes to make a website look great, work fast and perform well with a seamless user experience. Web developers, or 'devs', do this by using a variety of coding languages.              </p>
-              <ul>
-                <li><i class="bx bx-check-double"></i>.</li>
-                <li><i class="bx bx-check-double"></i> .</li>
-                <li><i class="bx bx-check-double"></i>.</li>
-              </ul>
-              <br>
-              <br>
-              <p>
-                Go ahead .... take out that apron and lets get cooking......
-              </p>
+              
             </div>
 
           </div>
@@ -448,7 +476,7 @@
 
         <div class="section-title">
           <h2><span>WebDev Tools</span></h2>
-          <p> Check out the most poulular cuisines in the world!!</p>
+          <p> Here are some Web Developement Tools</p>
         </div>
 
         <div class="row">
@@ -457,8 +485,7 @@
             <div class="box">
               <span>01</span>
               <br>
-              <a href="indian2.html">Node</a>
-              <p>Taste the regional and traditional cuisines native to the Indian subcontinent.</p>
+              <a href="https://en.wikipedia.org/wiki/Node.js">Node</a>
             </div>
           </div>
 
@@ -466,8 +493,7 @@
             <div class="box">
               <span>02</span>
               <br>
-              <a href="chinese2.html">Django</a>
-              <p>Check out famous chinese dishes!<br>Linger your taste buds to the variety of dishes..</p>
+              <a href="https://en.wikipedia.org/wiki/Django_(web_framework)">Django</a>
             </div>
           </div>
           
@@ -475,8 +501,7 @@
             <div class="box">
               <span>03</span>
               <br>
-              <a href="italian2.html">Flask</a>
-              <p>Indulge yourself in the exquisite taste ....<br>Go Italiano!!</p>
+              <a href="https://en.wikipedia.org/wiki/Flask_(web_framework)">Flask</a>
             </div>
           </div>
 
@@ -627,9 +652,7 @@
                   <div class="col-lg-8 details order-2 order-lg-1">
                     <h3>Shawn</h3>
                     <p class="font-italic"></p>
-                    <p>This dish is an Indian version of grilled chicken with spices which bring out the exotic flavours. This starter is usually served with mint chutney famously called 'The Puddina Chutney' in India. </p>
                     <br>
-                    <p class="font-italic">Check it out <a href="ChickenTikka.html">here </a>for this Recipe.</p>
                   </div>
                   <div class="col-lg-4 text-center order-1 order-lg-2">
                     <img src="assets/img/team/team-1.jpg" alt="" class="img-fluid">
@@ -640,12 +663,10 @@
                 <div class="row">
                   <div class="col-lg-8 details order-2 order-lg-1">
                     <h3>Steve</h3>
-                    <p>This famous chinese dish is famous around the world as it is simple yet filling. Initially started out as just a steamed momo, it now is made in many varieties. </p>
                     <br>
-                    <p class="font-italic">Check it out <a href="Dumpling.html">here </a>for this Recipe.</p>
                   </div>
                   <div class="col-lg-4 text-center order-1 order-lg-2">
-                    <img src="assets/img/team/team-2.jpg" alt="" class="img-fluid">
+                    <img src="assets/img/team/team-3.jpg" alt="" class="img-fluid">
                   </div>
                 </div>
               </div>
@@ -653,13 +674,11 @@
                 <div class="row">
                   <div class="col-lg-8 details order-2 order-lg-1">
                     <h3>Maria</h3>
-                    <p>This Italian dish is known for its amazing mix of flovours. Although it looks like a hard dish to pull off, it just takes half an hour to make it.</p>
                     <br>
-                    <p class="font-italic">Check it out <a href="VealMarsala.html">here </a>for this Recipe.</p>
 
                   </div>
                   <div class="col-lg-4 text-center order-1 order-lg-2">
-                    <img src="assets/img/team/team-3.jpg" alt="" class="img-fluid">
+                    <img src="assets/img/team/team-2.jpg" alt="" class="img-fluid">
                   </div>
                 </div>
               </div>
@@ -667,9 +686,7 @@
                 <div class="row">
                   <div class="col-lg-8 details order-2 order-lg-1">
                     <h3>Liza</h3>
-                    <p>This famous Chinese dish is by far the most fav snack of mine. follow the easy simple steps to keep your day going..</p>
                     <br>
-                    <p class="font-italic">Check it out <a href="Tofu.html">here </a>for this Recipe.</p>
 
                   </div>
                   <div class="col-lg-4 text-center order-1 order-lg-2">
