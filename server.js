@@ -48,6 +48,9 @@ app.get('/',(req,res) => {
 app.get('/ai',(req,res) => {
   res.render('ai');
 });
+app.get('/uiux',(req,res) => {
+  res.render('uiux');
+});
 
 app.get('/user_profile',(req,res) => {
   res.render('user_profile');
