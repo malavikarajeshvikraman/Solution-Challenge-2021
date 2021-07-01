@@ -25,7 +25,7 @@ const conn=mysql.createConnection({
     user: 'root',
 
     password: '12345',
-    database: 'challange'
+    database: 'challenge'
 
 })
 app.set('view engine','ejs');
@@ -267,7 +267,7 @@ app.get('/user_dashboard',(req,res) => {
 
 
 app.get('/mentors',function(req, res){
-  var value1,value2,value3 ;
+  var value1,value2,value3,value4,value5;
   var sql1 = 'select * from  persons  where Aoe = "Web Development";';
   conn.query(sql1, function (err, data1) {
     value1=data1;
@@ -278,9 +278,15 @@ app.get('/mentors',function(req, res){
     conn.query(sql3, function (err, data3) {
       value3=data3;
       console.log(value1,value2,value3);
-      setTimeout(func1, 300);
-      function func1 () {
-  res.render('mentors',{data1:value1,data2:value2,data3:value3});}
+      var sql4 = 'select * from  persons  where Aoe = "Machine Learning";';
+      conn.query(sql4, function (err, data4) {
+        value4=data4;
+        var sql5 = 'select * from  persons  where Aoe = "Internet of things";';
+        conn.query(sql5, function (err, data5) {
+          value5=data5;
+          res.render('mentors',{data1:value1,data2:value2,data3:value3,data4:value4,data5:value5});
+                });
+              });
             });
           });
          });

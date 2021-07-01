@@ -495,12 +495,12 @@
                 <div>
                   <h1>Explore your Interests : </h1>
                 </div>
-                
+                <% rr = { 'Web Development' : '/webdev', 'Internet of things' : '/iot','AI': '/ai' , 'UI/UX' : '/uiux','Machine Learning':'/ML'}  %>
               </div>
      <% data.forEach(function(posts){  %>
               <div class="charts__right__cards">
                 <div class="card1">
-                  <h1><%= posts %></h1>
+                  <h1><a href= "<%- rr[posts] %>"><%= posts %></a></h1>
                 </div>
 
                <% }) %>
